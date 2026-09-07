@@ -1,109 +1,142 @@
-# 3DPacketViewer
+# 3DPacketViewer + Stateful Semantic Protocol Analyzer
 
-Inspect where a decoded Wireshark field is encoded in the packet. The default
-**Byte & bit map** aligns fields with source-byte offsets and actual binary
-values; selecting a field links its decoded meaning, location, and raw bytes.
-An optional native OpenGL protocol stack supports exploring encapsulation.
-Both views use deep copies of Wireshark's own dissection, not independent parsers.
+Two native Wireshark extensions for packet inspection, protocol teaching and
+OT/smart-grid analysis. Wireshark supplies the decoded fields. The extensions
+add field-location views and deterministic analysis across packets.
 
-Target: **Wireshark 4.7.4 development**, commit
-`9fc76ca769c9226b3d484cc43e5b62289fab1da3`. This is a source-integrated UI
-plugin for this pinned revision, not a binary for distribution Wireshark 4.2.
-See [compatibility](docs/WIRESHARK_COMPATIBILITY.md) and the executed
-[version gate](docs/VERSION_GATE.md).
+| Tool | Question it answers | Main capabilities |
+|---|---|---|
+| **3DPacketViewer 0.2.0** | Where is this decoded field encoded? | Byte & bit map, source-relative offsets, raw hex/binary values, field inspector and interactive 3D protocol stack |
+| **Stateful Semantic Protocol Analyzer 0.1.0** | How do decoded operations and observations relate over time? | Transaction correlation, publisher state, configured policy checks, temporal differences and evidence-linked findings |
 
-![Aligned byte and bit map of a synthetic Modbus packet](docs/viewer.png)
+The tools are independent modules in one repository. The visualizer has no
+network client. The semantic engine works offline; its optional AI component
+receives only a reviewed, allowlisted semantic context.
 
-Build requirements: C++20 compiler, CMake >=3.22 (upstream requirements also
-apply), Ninja, Python 3, Qt 6 including Widgets/OpenGL/OpenGLWidgets, and
-Wireshark's native development dependencies. On Linux:
+## Watch the 60-second R-GOOSE demonstration
+
+https://github.com/user-attachments/assets/9ee6e2f7-3caa-4f56-9b3f-5ec8f9484b0d
+
+The silent, captioned video opens `Routable_GOOSE.pcap`, rotates and explodes the
+3D stack, locates `goose.stNum` in the Byte & bit map, and examines publisher
+observations in the semantic analyzer. It then shows a real OpenCode Go/Luna
+response, navigation to evidence frame 12, and disabling AI. Provider waiting
+time is shortened. See [chapters and interpretation](docs/DEMO.md).
+
+The video demonstrates the workflow, **not R-GOOSE security certification**.
+Signatures/HMACs, key management and authenticated replay protection are outside
+the implemented scope. Access to the private repository is required to view its
+attachment.
+
+## Compatibility
+
+| Item | Validated configuration |
+|---|---|
+| Wireshark | **4.7.4 development** |
+| Exact upstream commit | `9fc76ca769c9226b3d484cc43e5b62289fab1da3` |
+| Platform | Ubuntu 24.04.4, x86-64 |
+| Toolchain | Qt 6.4.2; GCC 13.3.0; CMake 3.28.3; Ninja 1.11.1 |
+| Integration | Source-integrated Qt UI plugins; modeless Wireshark-owned windows |
+| Other platforms | Native Windows and macOS runtime **NOT TESTED** |
+
+These modules are **not binaries for Wireshark 4.2.2**. Build and install them
+with the pinned Wireshark revision. The integration script checks the revision
+and links this repository into the upstream build; it does not vendor Wireshark
+or patch its implementation files.
+
+## Build and open
+
+Requirements: C++20, Python 3, Git, CMake, Ninja, Qt 6
+Core/Gui/Widgets/OpenGL/OpenGLWidgets/Network/Test, and Wireshark's development
+dependencies. Install the platform dependencies from [BUILD.md](docs/BUILD.md),
+then run these commands from the repository root:
 
 ```sh
+# Fetch the pinned upstream checkout if the source directory does not exist.
+# Build both native plugins and Wireshark.
 python3 tools/build.py --wireshark ../wireshark-pinned --build ../ws-build --jobs 4
 ../ws-build/run/wireshark
 ```
 
-Open **Tools → 3DPacketViewer → Open 3D packet viewer**. Select a packet in
-Wireshark; the viewer updates automatically. The window is modeless and owned
-by Wireshark. For installation, use the corresponding Wireshark build's
-`cmake --install` operation; the module installs into the versioned `ui`
-plugin directory. Do not copy it into an unrelated Wireshark installation.
-Detailed dependency, installation, Windows and macOS instructions are in
-[BUILD.md](docs/BUILD.md).
+Open a capture, select a packet, then use:
 
-Start with a concrete question: **where is this command or measurement encoded?**
+- **Tools → 3DPacketViewer → Open 3D packet viewer**
+- **Tools → Stateful Semantic Protocol Analyzer → Protocol Transactions**
 
-1. Select a packet, then select a field in the map or protocol tree.
-2. Read the selected-field explanation above the map: Wireshark's decoded value,
-   source-relative byte offset, container length, and represented bit count.
-3. Follow the black outlined range to the highlighted binary digits and raw
-   bytes. Generated fields instead explain that they have no direct wire range.
-4. Use **Emphasize protocol** to dim other interpretations while keeping every
-   byte in its original position. Choose 4, 8, or 16 bytes per row for readability.
-5. Use the source selector for additional buffers; a reassembled buffer is
-   explicitly separate from the captured frame.
+For installation, configure Wireshark's `CMAKE_INSTALL_PREFIX`, then run
+`cmake --install ../ws-build`. The modules install under the versioned
+`wireshark/plugins/4.7/ui` library directory. Do not copy them into an unrelated
+Wireshark installation. See [native build and packaging](semantic/docs/BUILD.md).
 
-For the synthetic Modbus fixture, selecting `modbus.func_code` shows the decoded
-function and its seven represented bits within byte 61. Selecting
-`mbtcp.trans_id` shows transaction identifier 4660, bytes 54–55, and raw `12 34`.
-The viewer explains available dissection metadata; it does not diagnose attacks
-or automatically judge whether a command is appropriate.
+## Inspect fields and protocol layers
 
-In the map, click selects a field and the mouse wheel scrolls through byte rows.
-Small fields remain accessible by hover or the tree. **3D protocol stack** is
-an optional mode with the following controls:
+Select a field in the map or tree. The inspector shows Wireshark's decoded value,
+source-relative offset, container length, bit metadata and provenance. The map
+and raw view highlight the corresponding bytes/bits in that data source.
+Use **Emphasize protocol** and 4/8/16 bytes per row to simplify the view.
+
+The **3D protocol stack** adds these interactions; equivalent toolbar controls
+are available:
 
 | Input | Action |
 |---|---|
-| Left drag | Orbit freely |
-| Wheel | Zoom |
-| Middle/right drag | Pan |
-| Double click | Fit selected canonical field, otherwise whole scene |
-| R / F | Reset camera / fit packet |
-| E / O | Explode layers / orthographic projection |
-| L / G | Labels / generated-field tree entries |
-| Escape | Clear field selection |
+| Left drag / wheel / middle or right drag | Orbit / zoom / pan |
+| Double click | Fit selected canonical field, otherwise the scene |
+| R / F | Reset / fit packet |
+| E / O | Explode layers / switch projection |
+| L / G / Escape | Labels / generated-field tree entries / clear selection |
 
-The 3D toolbar provides camera actions, field fitting, and layer spacing.
-The shared row control represents 32/64/128 bits (4/8/16 bytes). Click a field or a protocol-tree
-entry for metadata. Hover a rendered field for metadata. The raw view shows
-hex and MSB-first binary values, highlighting the selected range in its own
-data source. Selecting a field in native Packet Details updates the plugin;
-reverse selection into native Packet Details is not exposed by the plugin API.
+Packet selection updates the viewer automatically. Native Packet Details field
+selection updates the plugin; reverse selection of an individual native field
+is not exposed by the plugin API.
 
-**Interpretation:** Map width is linear in represented bits, with fixed row
-height. Protocol emphasis changes color only. In the 3D view, X is bit position within a wrapped row; Y identifies the
-row. One unit of planar width is one bit. Row gaps, shallow thickness, camera,
-colors and Z layer separation are presentational. Volume is not a packet
-quantity. Later protocol interpretations take canonical precedence, then deeper
-tree fields and earlier tree order; overlapping interpretations remain
-selectable in the tree. Generated fields occupy no wire-layout positions.
-Uncovered bits are “Unmapped wire region,” not presumed payload. Additional
-data sources appear separately and are never presented as original-frame bytes.
-See [scientific validity](docs/SCIENTIFIC_VALIDITY.md) for precision limits.
+## Analyze transactions and temporal context
 
-Generic support follows Wireshark's dissectors. Synthetic validation covers
-Ethernet, IPv4/IPv6, TCP/UDP, ARP, ICMP, VLAN, options, truncation, malformed
-frames, TCP/IP reassembly, Modbus/TCP, IEC 60870-5-104, GOOSE, MMS, Sampled
-Values and DNP3 link headers. These are bounded fixture claims, not exhaustive
-protocol certifications. See [protocol support](docs/PROTOCOL_SUPPORT.md).
+The semantic analyzer supports implemented profiles for IEC 60870-5-104,
+GOOSE/R-GOOSE, Sampled Values, MMS, Modbus/TCP and DNP3. Coverage differs by
+protocol: MMS confirmed-service envelopes and basic DNP3 application correlation
+are narrower than full protocol conformance. See the exact
+[protocol scope and rule assumptions](semantic/docs/PROTOCOLS.md).
+
+Select transactions or events, choose a context, then use **Analyze Semantic
+Differences (local)**. Contexts include selected packets, flows, publishers,
+time windows, frame ranges and comparisons. Statistics are computed locally.
+Contributing-frame navigation and filtering link results back to Wireshark.
+
+For optional AI: enable the checkbox, configure a session key or
+`OPENCODE_API_KEY`, refresh models, select a model, and open **View AI Request**.
+Only **Send** transmits the reviewed JSON. AI output is labeled separately and
+cannot overwrite deterministic findings. See the complete
+[semantic workflow](semantic/README.md) and [privacy boundary](semantic/docs/PRIVACY.md).
+
+## Interpretation and limits
+
+- Geometry follows represented bit ranges. Row wrapping, color, thickness and
+  Z separation are presentation choices; object volume is not a packet quantity.
+- Generated fields consume no wire bits. Additional/reassembled buffers remain
+  separate sources. Overlapping interpretations do not add independent bytes.
+- Unmapped bits are not automatically payload. Units, signal identities and
+  missing capture evidence are not invented.
+- A state change, timing observation or policy violation does not by itself
+  establish an attack. AI hypotheses remain unverified interpretations.
+- Validation uses bounded fixtures and documented GUI runs. This is not
+  exhaustive standards certification or field-deployment validation.
+
+## Tests and documentation
 
 ```sh
-# Independent core/UI build and core tests
-cmake -S . -B build -G Ninja
+# Builds independent components for both tools; no Wireshark module is produced.
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ctest --test-dir build --output-on-failure
-# Wireshark-backed fixture validation
-python3 tools/make_fixtures.py
-python3 tests/integration/validate.py --bin ../ws-build/run \
-  --fixtures build-fixtures --output build-validation
 ```
 
-[Validation results](docs/VALIDATION.md) · [Architecture](docs/ARCHITECTURE.md) ·
-[Limitations](docs/LIMITATIONS.md). GPL-2.0-or-later. All packet processing
-is local: no telemetry, remote renderer, network client, or external parser is
-part of the plugin.
+| Topic | Visualizer | Semantic analyzer |
+|---|---|---|
+| Design | [Architecture](docs/ARCHITECTURE.md) | [Architecture](semantic/docs/ARCHITECTURE.md) |
+| Interpretation | [Scientific validity](docs/SCIENTIFIC_VALIDITY.md) | [Protocol rules](semantic/docs/PROTOCOLS.md) |
+| Executed results | [Validation](docs/VALIDATION.md) | [Validation](semantic/docs/VALIDATION.md) |
+| Remaining scope | [Limitations](docs/LIMITATIONS.md) | [Limitations](semantic/docs/LIMITATIONS.md) |
+| Configuration | [Build and controls](docs/BUILD.md) | [Assets, policies and contexts](semantic/docs/CONFIGURATION.md) |
 
-## Stateful Semantic Protocol Analyzer
-
-The repository now also contains an independent native extension for deterministic OT transactions and temporal semantic analysis, with optional reviewed AI summaries. See [semantic/README.md](semantic/README.md) for its workflow, build, privacy boundary and validation.
+License: [GPL-2.0-or-later](LICENSE), compatible with Wireshark linkage.

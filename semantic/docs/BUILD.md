@@ -11,7 +11,7 @@ A standalone configure (`cmake -S semantic -B build-semantic`) builds the offlin
 
 ## Native Windows
 
-Use the pinned revision's official Windows Developer Guide/toolchain, a Visual Studio 2022 x64 development prompt, CMake, matching Qt 6 libraries and Wireshark's dependency bundle. Read `doc/README.windows` and the current [official developer guide](https://www.wireshark.org/docs/wsdg_html/) for required versions. The repository's integration helper creates a directory link; Windows must permit directory symlinks (Developer Mode or appropriate privilege). Configure the linked checkout with `CUSTOM_PLUGIN_SRC_DIR=ui/3dpacketviewer`, then build the Release configuration and install the resulting versioned UI module alongside that same Wireshark build. Do not combine toolchain/Qt/ABI variants. Native Windows execution and credential-entry behavior were NOT TESTED here.
+Use the pinned revision's Windows Developer Guide/toolchain: its quick-setup examples use Visual Studio 2026 with an x64 development prompt, CMake, matching Qt 6 libraries and Wireshark's dependency bundle. Read `doc/wsdg_src/wsdg_quick_setup.adoc` in that checkout and the repository's [Windows build instructions](../../docs/BUILD.md#native-windows-not-tested). The upstream examples permit adaptation to older Visual Studio versions; those alternatives were not validated here. Windows must permit the integration helper's directory symlinks (Developer Mode or appropriate privilege). Configure the linked checkout with `CUSTOM_PLUGIN_SRC_DIR=ui/3dpacketviewer`, then build the Release configuration and install the module alongside that same Wireshark build. Do not combine toolchain/Qt/ABI variants. Native Windows execution and credential-entry behavior were NOT TESTED here.
 
 ## macOS
 
