@@ -4,6 +4,10 @@
     "passed": true
   },
   {
+    "test": "dnp3_read endpoint identity",
+    "passed": true
+  },
+  {
     "test": "dnp3_read decoded events",
     "passed": true
   },
@@ -21,6 +25,10 @@
   },
   {
     "test": "goose_duplicate_publisher capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "goose_duplicate_publisher endpoint identity",
     "passed": true
   },
   {
@@ -44,6 +52,10 @@
     "passed": true
   },
   {
+    "test": "goose_normal endpoint identity",
+    "passed": true
+  },
+  {
     "test": "goose_normal decoded events",
     "passed": true
   },
@@ -61,6 +73,10 @@
   },
   {
     "test": "goose_regression capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "goose_regression endpoint identity",
     "passed": true
   },
   {
@@ -84,6 +100,10 @@
     "passed": true
   },
   {
+    "test": "iec104_boundary endpoint identity",
+    "passed": true
+  },
+  {
     "test": "iec104_boundary decoded events",
     "passed": true
   },
@@ -101,6 +121,10 @@
   },
   {
     "test": "iec104_drift capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_drift endpoint identity",
     "passed": true
   },
   {
@@ -124,6 +148,10 @@
     "passed": true
   },
   {
+    "test": "iec104_missing_confirmation endpoint identity",
+    "passed": true
+  },
+  {
     "test": "iec104_missing_confirmation decoded events",
     "passed": true
   },
@@ -141,6 +169,10 @@
   },
   {
     "test": "iec104_missing_termination capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_termination endpoint identity",
     "passed": true
   },
   {
@@ -164,6 +196,10 @@
     "passed": true
   },
   {
+    "test": "iec104_multi_pdu endpoint identity",
+    "passed": true
+  },
+  {
     "test": "iec104_multi_pdu decoded events",
     "passed": true
   },
@@ -181,6 +217,10 @@
   },
   {
     "test": "iec104_normal_temporal capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal endpoint identity",
     "passed": true
   },
   {
@@ -204,6 +244,10 @@
     "passed": true
   },
   {
+    "test": "iec104_retransmission endpoint identity",
+    "passed": true
+  },
+  {
     "test": "iec104_retransmission decoded events",
     "passed": true
   },
@@ -221,6 +265,10 @@
   },
   {
     "test": "iec104_segmented capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_segmented endpoint identity",
     "passed": true
   },
   {
@@ -244,6 +292,10 @@
     "passed": true
   },
   {
+    "test": "iec104_sequence endpoint identity",
+    "passed": true
+  },
+  {
     "test": "iec104_sequence decoded events",
     "passed": true
   },
@@ -261,6 +313,10 @@
   },
   {
     "test": "iec104_sequence_objects capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects endpoint identity",
     "passed": true
   },
   {
@@ -284,6 +340,10 @@
     "passed": true
   },
   {
+    "test": "iec104_small_bias endpoint identity",
+    "passed": true
+  },
+  {
     "test": "iec104_small_bias decoded events",
     "passed": true
   },
@@ -301,6 +361,10 @@
   },
   {
     "test": "iec104_wrap capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_wrap endpoint identity",
     "passed": true
   },
   {
@@ -324,6 +388,10 @@
     "passed": true
   },
   {
+    "test": "mms_identify endpoint identity",
+    "passed": true
+  },
+  {
     "test": "mms_identify decoded events",
     "passed": true
   },
@@ -341,6 +409,10 @@
   },
   {
     "test": "modbus_read capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "modbus_read endpoint identity",
     "passed": true
   },
   {
@@ -364,6 +436,10 @@
     "passed": true
   },
   {
+    "test": "modbus_write endpoint identity",
+    "passed": true
+  },
+  {
     "test": "modbus_write decoded events",
     "passed": true
   },
@@ -384,6 +460,10 @@
     "passed": true
   },
   {
+    "test": "sv_gap endpoint identity",
+    "passed": true
+  },
+  {
     "test": "sv_gap decoded events",
     "passed": true
   },
@@ -401,6 +481,10 @@
   },
   {
     "test": "sv_wrap capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap endpoint identity",
     "passed": true
   },
   {

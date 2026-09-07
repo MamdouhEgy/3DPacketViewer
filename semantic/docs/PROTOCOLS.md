@@ -23,6 +23,8 @@ Transfer control is a separate connection state: UNKNOWN, STARTED, STOPPED. A ca
 
 Multi-PDU IEC104 and multiple IOAs remain separate events. MMS envelopes are scoped by their tree marker ancestors. SV ASDUs are scoped by their own svID tree ancestry. Dataset members are indexed observations; no engineering identity or physical units are invented without configuration.
 
+Exported-PDU endpoints use the visible `exported_pdu.ipv4_src`/`ipv4_dst` (or IPv6) fields; hidden convenience aliases remain excluded. Events missing endpoint identity are retained as unresolved observations and do not enter cross-packet correlation.
+
 Each copied scalar retains originating frame, exact Wireshark abbreviation, local tree node ID, data-source identity/name, source-relative offset/length and generated status. Source-relative offsets are **not necessarily current-frame offsets**. Reassembled sources are named and marked as additional sources, without claiming original-frame contiguity. Packet timestamps use Wireshark's time relative to the first frame, independent of display time-reference changes. No pointer to transient dissection data survives the callback.
 
 SV `seqData` is opaque unless Wireshark decodes it. The plugin does not force the `sv.decode_data_as_phsmeas` preference or assign a measurement layout. Users may enable that Wireshark profile-specific preference when it matches their engineering configuration. Only then can its decoded measurement and quality fields enter the event model. Current generic SV fixtures validate counters/stream metadata; arbitrary waveform interpretation is outside scope.

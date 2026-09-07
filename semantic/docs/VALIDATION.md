@@ -6,14 +6,14 @@ Target: Wireshark 4.7.4 development, `9fc76ca769c9226b3d484cc43e5b62289fab1da3`;
 |---|---|
 | Fresh standalone Debug configure/build | PASS; core, serializer, provider, AI panel and tests built from an empty build directory |
 | Native release configure/build | PASS; final UI module built with `SSPA_GUI_TESTS=OFF`; upstream EPAN/dissectors rebuilt during final release configure |
-| Offline core/context/privacy unit suite | 35 passed, 0 failed (includes Qt initialization/cleanup cases) |
+| Offline core/context/privacy unit suite | 36 passed, 0 failed (includes Qt initialization/cleanup cases) |
 | Deterministic network transport regression | 15 passed, 0 failed (includes Qt initialization/cleanup cases) |
-| Synthetic capture integration and independent field-location checks | 146 passed, 0 failed |
+| Synthetic capture integration and independent field-location checks | 167 passed, 0 failed |
 | Installed user-bundle native GUI | 36 passed, 0 failed; installed-library compatibility and clean shutdown verified |
 | Native offline GUI under ASan/UBSan | 36 passed, 0 failed; process exited normally with code 0 |
 | Live OpenCode GUI acceptance run | 42 passed, 0 failed; includes the then-current 35 offline GUI checks plus 7 live acceptance checks; not 42 additional independent tests |
-| ASan/UBSan unit and network suites | 35 + 15 passed; no sanitizer error |
-| ASan/UBSan fixture integration | 146 passed; no sanitizer error |
+| ASan/UBSan unit and network suites | 36 + 15 passed; no sanitizer error |
+| ASan/UBSan fixture integration | 167 passed; no sanitizer error |
 | Wireshark upstream file-format / command-line suites | 44 passed, 11 skipped; executed with instrumented binaries |
 | Wireshark source API checker | 0 warnings |
 | Source credential-pattern scan | 0 credential-token patterns found |
@@ -51,6 +51,8 @@ Executed tests cover AI-off zero requests, cancellation, dynamic adapter discove
 
 ## Performance observations
 
-The 21 fixture captures' final release CLI process runtimes had median 77.372 ms and maximum 93.320 ms on this machine. These include EPAN startup, file I/O, extraction, state processing, serialization and process teardown; they are **not** per-packet tap latency or an industrial throughput claim. Exact rows are in `results/benchmark.json`. A 10,000-event unit regression verifies bounded context summarization over all selected observations. The viewer uses Qt models, not one widget per event, and never automatically rescans on every packet selection.
+The 21 fixture captures' final release CLI process runtimes had median 85.674 ms and maximum 88.765 ms on this machine. These include EPAN startup, file I/O, extraction, state processing, serialization and process teardown; they are **not** per-packet tap latency or an industrial throughput claim. Exact rows are in `results/benchmark.json`. A 10,000-event unit regression verifies bounded context summarization over all selected observations. The viewer uses Qt models, not one widget per event, and never automatically rescans on every packet selection.
 
 The full-tree tap requirement adds Wireshark dissection work while the viewer is open. Event/transaction/finding limits are explicit; reaching them yields partial-results diagnostics. No claim is made that the current limits support unbounded live captures or every industrial SV rate.
+
+The final endpoint-provenance regression checks all 21 fixtures for nonempty source/destination identity. Exported-PDU MMS uses visible exported-PDU address fields; events lacking endpoint identity are retained but excluded from correlation.

@@ -88,6 +88,13 @@ bool Engine::ingest(Event e)
             "Wireshark expert dissection result");
         return true;
     }
+    if (current.source.isEmpty() || current.destination.isEmpty()) {
+        finding(current, "ENDPOINT_IDENTITY_UNRESOLVED", "CAPTURE_LIMITATION",
+            "Decoded source and destination identity", "One or both endpoints are unavailable",
+            "Cross-packet correlation is omitted to avoid joining unrelated unidentified endpoints.",
+            "Conservative analyzer correlation policy");
+        return true;
+    }
     modules.at(current.protocol)->consume(current, *this);
     return true;
 }

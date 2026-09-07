@@ -3,126 +3,126 @@
     "fixture": "dnp3_read",
     "frames": 5,
     "events": 2,
-    "total_process_ms": 82.94
+    "total_process_ms": 85.715
   },
   {
     "fixture": "goose_duplicate_publisher",
     "frames": 3,
     "events": 6,
-    "total_process_ms": 77.007
+    "total_process_ms": 88.765
   },
   {
     "fixture": "goose_normal",
     "frames": 3,
     "events": 6,
-    "total_process_ms": 78.99
+    "total_process_ms": 83.749
   },
   {
     "fixture": "goose_regression",
     "frames": 2,
     "events": 4,
-    "total_process_ms": 78.797
+    "total_process_ms": 72.165
   },
   {
     "fixture": "iec104_boundary",
     "frames": 4,
     "events": 2,
-    "total_process_ms": 77.372
+    "total_process_ms": 72.87
   },
   {
     "fixture": "iec104_drift",
     "frames": 23,
     "events": 40,
-    "total_process_ms": 84.7
+    "total_process_ms": 87.725
   },
   {
     "fixture": "iec104_missing_confirmation",
     "frames": 5,
     "events": 4,
-    "total_process_ms": 78.484
+    "total_process_ms": 74.6
   },
   {
     "fixture": "iec104_missing_termination",
     "frames": 6,
     "events": 4,
-    "total_process_ms": 74.381
+    "total_process_ms": 83.492
   },
   {
     "fixture": "iec104_multi_pdu",
     "frames": 4,
     "events": 4,
-    "total_process_ms": 76.339
+    "total_process_ms": 86.464
   },
   {
     "fixture": "iec104_normal_temporal",
     "frames": 12,
     "events": 16,
-    "total_process_ms": 78.833
+    "total_process_ms": 88.488
   },
   {
     "fixture": "iec104_retransmission",
     "frames": 7,
     "events": 6,
-    "total_process_ms": 76.654
+    "total_process_ms": 85.674
   },
   {
     "fixture": "iec104_segmented",
     "frames": 7,
     "events": 6,
-    "total_process_ms": 73.391
+    "total_process_ms": 85.769
   },
   {
     "fixture": "iec104_sequence",
     "frames": 6,
     "events": 6,
-    "total_process_ms": 78.504
+    "total_process_ms": 88.742
   },
   {
     "fixture": "iec104_sequence_objects",
     "frames": 4,
     "events": 3,
-    "total_process_ms": 75.916
+    "total_process_ms": 87.821
   },
   {
     "fixture": "iec104_small_bias",
     "frames": 23,
     "events": 40,
-    "total_process_ms": 93.32
+    "total_process_ms": 88.283
   },
   {
     "fixture": "iec104_wrap",
     "frames": 5,
     "events": 4,
-    "total_process_ms": 85.641
+    "total_process_ms": 77.141
   },
   {
     "fixture": "mms_identify",
     "frames": 2,
     "events": 2,
-    "total_process_ms": 72.176
+    "total_process_ms": 75.949
   },
   {
     "fixture": "modbus_read",
     "frames": 5,
     "events": 4,
-    "total_process_ms": 67.976
+    "total_process_ms": 73.347
   },
   {
     "fixture": "modbus_write",
     "frames": 5,
     "events": 4,
-    "total_process_ms": 65.712
+    "total_process_ms": 82.763
   },
   {
     "fixture": "sv_gap",
     "frames": 3,
     "events": 3,
-    "total_process_ms": 71.074
+    "total_process_ms": 85.106
   },
   {
     "fixture": "sv_wrap",
     "frames": 3,
     "events": 3,
-    "total_process_ms": 79.958
+    "total_process_ms": 85.761
   }
 ]

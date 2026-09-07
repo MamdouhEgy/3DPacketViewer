@@ -9,7 +9,7 @@ for path in sorted(a.fixtures.glob('*.pcap')):
     dest=a.output/(path.stem+'.json');start=time.perf_counter();r=subprocess.run([str(a.analyzer),str(path),str(dest)],capture_output=True);elapsed=(time.perf_counter()-start)*1000
     check(path.stem+' capture analysis process',r.returncode==0)
     if r.returncode:continue
-    d=json.loads(dest.read_text());reports[path.stem]=d;check(path.stem+' decoded events',bool(d['events']));check(path.stem+' no malformed decoded fixture',not any(e['malformed'] for e in d['events']))
+    d=json.loads(dest.read_text());reports[path.stem]=d;check(path.stem+' endpoint identity',all(e['source'] and e['destination'] for e in d['events']));check(path.stem+' decoded events',bool(d['events']));check(path.stem+' no malformed decoded fixture',not any(e['malformed'] for e in d['events']))
     check(path.stem+' every semantic value has field provenance',all(v['provenance'] for e in d['events'] for v in e['values'].values()))
     check(path.stem+' no raw packet data in outbound context',all(s not in json.dumps(d['semantic_context']) for s in ('192.0.2.', 'raw_bytes', 'payload','SYNTHETIC/','SYNTHETIC-MU')))
     bench.append(dict(fixture=path.stem,frames=d['capture_frames'],events=len(d['events']),total_process_ms=round(elapsed,3)))

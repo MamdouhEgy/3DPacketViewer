@@ -186,6 +186,16 @@ private slots:
         QVERIFY(std::none_of(e.findings.begin(), e.findings.end(),
             [](auto f) { return f.rule == "IEC104_TX_SEQUENCE_DISCONTINUITY"; }));
     }
+    void missingEndpointDoesNotCorrelate()
+    {
+        Engine e;
+        auto a = command(1, 6);
+        a.source.clear();
+        e.ingest(a);
+        QCOMPARE(e.events.size(), 1);
+        QVERIFY(e.transactions.empty());
+        QCOMPARE(e.findings.back().rule, QString("ENDPOINT_IDENTITY_UNRESOLVED"));
+    }
     void resetInvalidates()
     {
         Engine e;

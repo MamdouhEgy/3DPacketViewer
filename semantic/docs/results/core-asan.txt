@@ -13,6 +13,7 @@ PASS   : SemanticTests::duplicateTap()
 PASS   : SemanticTests::retransmission()
 PASS   : SemanticTests::sequenceWrap()
 PASS   : SemanticTests::reorderedSequence()
+PASS   : SemanticTests::missingEndpointDoesNotCorrelate()
 PASS   : SemanticTests::resetInvalidates()
 PASS   : SemanticTests::boundedStore()
 PASS   : SemanticTests::concurrentTransactions()
@@ -35,5 +36,5 @@ PASS   : SemanticTests::adapters()
 PASS   : SemanticTests::maliciousOutput()
 PASS   : SemanticTests::disabledNetwork()
 PASS   : SemanticTests::cleanupTestCase()
-Totals: 35 passed, 0 failed, 0 skipped, 0 blacklisted, 586ms
+Totals: 36 passed, 0 failed, 0 skipped, 0 blacklisted, 590ms
 ********* Finished testing of SemanticTests *********

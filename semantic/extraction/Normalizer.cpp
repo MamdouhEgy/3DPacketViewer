@@ -6,6 +6,8 @@ namespace sspa
 const QMap<QString, QString>& semanticFields()
 {
     static const QMap<QString, QString> fields = { { "frame.number", "frame_number" },
+        { "exported_pdu.ipv4_src", "source_ip" }, { "exported_pdu.ipv4_dst", "destination_ip" },
+        { "exported_pdu.ipv6_src", "source_ip" }, { "exported_pdu.ipv6_dst", "destination_ip" },
         { "ip.src", "source_ip" }, { "ip.dst", "destination_ip" }, { "ipv6.src", "source_ip" },
         { "ipv6.dst", "destination_ip" }, { "eth.src", "source_mac" }, { "eth.dst", "destination_mac" },
         { "tcp.srcport", "source_port" }, { "tcp.dstport", "destination_port" },
