@@ -75,3 +75,18 @@ The project will use the same license for Wireshark-linked code.
 Confirmed dissector identifiers from proto_register_protocol calls:
 mbtcp, modbus, iec60870_104, iec60870_asdu, goose, mms, sv, dnp3.
 Their presence is not evidence that project fixture tests have passed.
+
+## Executed baseline gate
+
+PASS: clean configure and complete unmodified build, including Wireshark,
+tshark, text2pcap and default plugins. Final command: cmake --build with
+Ninja, 12 parallel jobs, RelWithDebInfo. The source git status was empty.
+PASS: launched the baseline Qt GUI using xcb, observed its visible window,
+and inspected a window capture displaying 4.7.4 (9fc76ca769c9).
+Implementation began only after this gate passed.
+
+Chosen integration: source-linked custom plugin using upstream CMake extension;
+modeless QWidget owned by the main window; QObject public signal connections
+plus synchronous plugin_if capture callbacks. No upstream adapter patch.
+Reverse native field selection is unavailable through the exported interface;
+the plugin's inspector and source-specific byte highlighting are authoritative.

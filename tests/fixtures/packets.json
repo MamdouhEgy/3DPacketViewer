@@ -1,0 +1,363 @@
+[
+  {
+    "name": "ethernet_ipv4_tcp",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 28 00 01 00 00 40 06 f6 cb c0 00 02 01 c0 00 02 02 9c 40 00 50 00 00 00 01 00 00 00 00 50 02 10 00 7f 4d 00 00",
+        "reported": 54
+      }
+    ]
+  },
+  {
+    "name": "ethernet_ipv4_udp",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "udp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 20 00 01 00 00 40 11 f6 c8 c0 00 02 01 c0 00 02 02 9c 40 9c 41 00 0c 00 00 41 42 43 44",
+        "reported": 46
+      }
+    ]
+  },
+  {
+    "name": "arp",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "arp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 06 00 01 08 00 06 04 00 01 02 00 00 00 00 01 c0 00 02 01 00 00 00 00 00 00 c0 00 02 02",
+        "reported": 42
+      }
+    ]
+  },
+  {
+    "name": "icmp",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "icmp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 20 00 01 00 00 40 01 f6 d8 c0 00 02 01 c0 00 02 02 08 00 47 3a 12 34 00 01 50 49 4e 47",
+        "reported": 46
+      }
+    ]
+  },
+  {
+    "name": "vlan",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "vlan",
+      "ip",
+      "udp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 81 00 a0 64 08 00 45 00 00 20 00 01 00 00 40 11 f6 c8 c0 00 02 01 c0 00 02 02 9c 40 9c 41 00 0c 00 00 41 42 43 44",
+        "reported": 50
+      }
+    ]
+  },
+  {
+    "name": "ipv6",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ipv6",
+      "udp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "UDP checksum intentionally zero to exercise Wireshark expert reporting in IPv6.",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 86 dd 60 00 00 00 00 0c 11 40 20 01 0d b8 00 00 00 00 00 00 00 00 00 00 00 01 20 01 0d b8 00 00 00 00 00 00 00 00 00 00 00 02 9c 40 9c 41 00 0c 00 00 41 42 43 44",
+        "reported": 66
+      }
+    ]
+  },
+  {
+    "name": "tcp_options",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 30 00 01 00 00 40 06 f6 c3 c0 00 02 01 c0 00 02 02 9c 40 00 50 00 00 00 01 00 00 00 00 70 02 10 00 53 83 00 00 02 04 05 b4 01 03 03 07",
+        "reported": 62
+      }
+    ]
+  },
+  {
+    "name": "ipv4_options",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "udp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 46 00 00 24 00 01 00 00 40 11 f4 c3 c0 00 02 01 c0 00 02 02 01 01 00 00 9c 40 9c 41 00 0c 00 00 41 42 43 44",
+        "reported": 50
+      }
+    ]
+  },
+  {
+    "name": "bit_fields",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 28 00 01 40 00 40 06 b6 cb c0 00 02 01 c0 00 02 02 9c 40 00 50 00 00 00 01 00 00 00 00 50 12 10 00 7f 3d 00 00",
+        "reported": 54
+      }
+    ]
+  },
+  {
+    "name": "truncated",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 28 00 01 00 00 40 06 f6 cb c0 00 02 01",
+        "reported": 54
+      }
+    ]
+  },
+  {
+    "name": "malformed",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "IPv4 header length 1 is deliberately invalid.",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 41 00 00 28 00 01 00 00 40 06 f6 cb c0 00 02 01 c0 00 02 02 9c 40 00 50 00 00 00 01 00 00 00 00 50 18 10 00 7f 37 00 00",
+        "reported": 54
+      }
+    ]
+  },
+  {
+    "name": "modbus",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp",
+      "mbtcp",
+      "modbus"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 34 00 01 00 00 40 06 f6 bf c0 00 02 01 c0 00 02 02 9c 40 01 f6 00 00 00 01 00 00 00 00 50 18 10 00 6a 46 00 00 12 34 00 00 00 06 01 03 00 00 00 02",
+        "reported": 66
+      }
+    ]
+  },
+  {
+    "name": "iec104",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp",
+      "iec60870_104",
+      "iec60870_asdu"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 38 00 01 00 00 40 06 f6 bb c0 00 02 01 c0 00 02 02 9c 40 09 64 00 00 00 01 00 00 00 00 50 18 10 00 08 03 00 00 68 0e 00 00 00 00 01 01 03 00 01 00 01 00 00 01",
+        "reported": 70
+      }
+    ]
+  },
+  {
+    "name": "tcp_reassembly",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp",
+      "mbtcp",
+      "modbus"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "Modbus message split at byte 8; application PDU is a separate reassembled data source on frame 2.",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 30 00 01 00 00 40 06 f6 c3 c0 00 02 01 c0 00 02 02 9c 40 01 f6 00 00 00 01 00 00 00 00 50 18 10 00 6a 4c 00 00 12 34 00 00 00 06 01 03",
+        "reported": 62
+      },
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 2c 00 02 00 00 40 06 f6 c6 c0 00 02 01 c0 00 02 02 9c 40 01 f6 00 00 00 09 00 00 00 00 50 18 10 00 7d 83 00 00 00 00 00 02",
+        "reported": 58
+      }
+    ]
+  },
+  {
+    "name": "ip_reassembly",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "udp"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "Two IPv4 fragments; last fragment has reassembled IP data source.",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 24 00 2a 20 00 40 11 d6 9b c0 00 02 01 c0 00 02 02 9c 40 9c 41 00 18 00 00 30 31 32 33 34 35 36 37",
+        "reported": 50
+      },
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 1c 00 2a 00 02 40 11 f6 a1 c0 00 02 01 c0 00 02 02 38 39 61 62 63 64 65 66",
+        "reported": 42
+      }
+    ]
+  },
+  {
+    "name": "goose",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "goose"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 88 b8 10 00 00 52 00 00 00 00 61 48 80 0f 4c 44 30 2f 4c 4c 4e 30 24 47 4f 24 67 63 62 81 02 03 e8 82 0b 4c 44 30 2f 4c 4c 4e 30 24 64 73 83 03 67 6f 31 84 08 00 00 00 00 00 00 00 00 85 01 01 86 01 01 87 01 00 88 01 01 89 01 00 8a 01 01 ab 03 83 01 01",
+        "reported": 96
+      }
+    ]
+  },
+  {
+    "name": "sampled_values",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "sv"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 88 ba 40 00 00 2e 00 00 00 00 60 24 80 01 01 a2 1f 30 1d 80 04 4d 55 30 31 82 02 00 01 83 04 00 00 00 01 85 01 02 87 08 00 00 00 00 00 00 00 00",
+        "reported": 60
+      }
+    ]
+  },
+  {
+    "name": "mms",
+    "linktype": 252,
+    "protocols": [
+      "mms"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "Synthetic Wireshark Upper PDU encapsulation: MMS Confirmed-Request identify, invokeID=1. Tests MMS generically without inventing an OSI connection handshake.",
+    "frames": [
+      {
+        "hex": "00 0c 00 04 6d 6d 73 00 00 00 00 00 a0 05 02 01 01 82 00",
+        "reported": 19
+      }
+    ]
+  },
+  {
+    "name": "dnp3",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "ip",
+      "tcp",
+      "dnp3"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "DNP3 link-layer reset request, destination 1, source 1024, valid link-header CRC; no application data.",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 08 00 45 00 00 32 00 01 00 00 40 06 f6 c1 c0 00 02 01 c0 00 02 02 9c 40 4e 20 00 00 00 01 00 00 00 00 50 18 10 00 3c 13 00 00 05 64 05 c0 01 00 00 04 e9 21",
+        "reported": 64
+      }
+    ]
+  },
+  {
+    "name": "goose_many_fields",
+    "linktype": 1,
+    "protocols": [
+      "eth",
+      "goose"
+    ],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "512 synthetic Boolean dataset members; reproducible complex-packet benchmark.",
+    "frames": [
+      {
+        "hex": "02 00 00 00 00 02 02 00 00 00 00 01 88 b8 10 01 06 4b 00 00 00 00 61 82 06 3f 80 11 4c 44 30 2f 4c 4c 4e 30 24 47 4f 24 62 65 6e 63 68 81 02 03 e8 82 05 62 65 6e 63 68 84 08 00 00 00 00 00 00 00 00 85 01 01 86 01 01 87 01 00 88 01 01 89 01 00 8a 02 02 00 ab 82 06 00 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01 83 01 01",
+        "reported": 1625
+      }
+    ]
+  },
+  {
+    "name": "zero_length",
+    "linktype": 1,
+    "protocols": [],
+    "origin": "Hand-constructed synthetic bytes by tools/make_fixtures.py; documentation addresses only.",
+    "note": "Zero captured and reported bytes.",
+    "frames": [
+      {
+        "hex": "",
+        "reported": 0
+      }
+    ]
+  }
+]
