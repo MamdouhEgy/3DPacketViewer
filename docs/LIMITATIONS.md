@@ -20,8 +20,8 @@
 - There are explicit resource limits (see architecture). Very large snapshots
   can be partially omitted with a diagnostic. Extraction and layout occur on
   the GUI thread; the benchmark is bounded, not a real-time guarantee.
-- OpenGL 2.1/GLSL 1.20 is required. An unavailable context or shader failure
-  leaves a diagnostic and the metadata/byte tools; it does not provide a
+- The optional 3D view requires OpenGL 2.1/GLSL 1.20. The default map uses
+  QPainter. An unavailable context or shader failure leaves a diagnostic; there is no
   software replacement 3D renderer. Performance depends on Qt's driver backend.
 - Tested smart-grid traffic is synthetic and narrow: DNP3 link reset only; MMS
   identify request in Wireshark Upper PDU encapsulation, not an entire OSI
@@ -32,3 +32,7 @@
   reproduced with plugins disabled. GTK/ATK initialization without a session
   bus also produced a 56-byte leak. Isolated GUI sanitizer tests pass; the
   ordinary desktop host is not claimed leak-free. See retained reports.
+
+- The aligned map explains field locations and decoded values. Its usefulness
+  has not been measured in a user study, and it does not replace Wireshark
+  stream analysis, conversations, expert diagnostics or statistical tools.

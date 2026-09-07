@@ -5,7 +5,23 @@ This visualization reports Wireshark metadata; it is not a protocol-standard
 conformance oracle. Hand-constructed ground truth and tshark agreement are
 separate validation methods.
 
-## Spatial meaning
+## Aligned byte-and-bit map
+
+The default view uses source-relative byte rows, increasing left to right then
+top to bottom. Within each byte, bit labels run from 7 down to 0 (MSB first).
+Every represented bit has equal horizontal width; row height is fixed and has
+no quantitative meaning. Changing the wrapping width or window size changes
+presentation only. Bit digits are omitted when too narrow to read, never
+replaced by invented values. Color identifies protocol categories; the focus
+control dims other fields without dropping or moving their bits.
+
+The black selection outline and yellow binary highlights use the field's full
+resolved ranges, including ranges belonging to structural parents or aliases.
+This is an overlay, not additional packet occupancy. A partial mask highlights
+only its resolved bits. Display text never determines rectangle width. The
+byte-container length in the explanation is distinct from represented bit count.
+
+## Spatial meaning of the optional 3D stack
 
 Let b be a source-relative MSB-first bit index, and W the row width (32, 64,
 or 128). X = b mod W. Row = floor(b/W). Y = -1.4 × Row. A contiguous span

@@ -11,6 +11,7 @@ or transient dissection pointers. No upstream implementation patch is required.
 | PacketModel | Shared immutable snapshot with local node IDs, parents, source IDs and capture generation |
 | FieldRangeResolver | Bounds checks, masks, byte order, explicit bit spans, generated-field exclusion |
 | PacketGeometryEngine | Deterministic source-bit partition and wrapped shallow-box layout |
+| PacketByteMap | Default scrollable QPainter map, source-bit ruler, virtualized rows, canonical-field picking and complete selection-range overlays |
 | PacketRenderer | OpenGL shader/buffer/context ownership, bounded labels, scene drawing and input dispatch |
 | CameraController | Normalized quaternion rotation, center, distance, projection and scale limits |
 | SelectionController | Unprojected ray and slab intersection against actual geometry boxes |
@@ -73,6 +74,26 @@ Each winning span splits at configurable row boundaries. X is MSB-first bit
 position modulo row width; Y is negative row number times a fixed presentation
 pitch. Layer number affects only Z in stack mode; wire mode sets all layers to
 zero. Rendering never changes the source bytes, semantic values or bit spans.
+
+## Default byte map
+
+PacketByteMap reuses PacketGeometryEngine with wireView=true; it does not
+resolve field ranges again. Each tile becomes an orthogonal rectangle whose
+width is bit count times the current screen scale. Row height, gutters, labels
+and binary text are presentation choices. Binary digits come from the copied
+source bytes, MSB first. Painting and hit testing seek to the first visible tile
+and process only visible rows; scroll positions use row indices instead of
+potentially overflowing pixel counts. The existing geometry cap stays explicit.
+
+Selection overlays use the selected field's full resolved ranges independently
+of canonical tile ownership. Thus selecting a parent or alias can outline child
+positions without allocating duplicate tiles. Generated fields get no overlay.
+Protocol emphasis changes only categorical presentation and preserves picking.
+Both the map and OpenGL renderer share the same selected local field identifier,
+inspector and raw view. Switching views preserves selection and source identity.
+The map itself paints through QPainter rather than issuing OpenGL draw calls.
+Performance counters are retained as a frame-status tooltip, outside the main
+inspection workflow.
 
 ## Untrusted input and resource limits
 

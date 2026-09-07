@@ -1,9 +1,10 @@
 # 3DPacketViewer
 
-Native Qt/OpenGL visualization of the currently selected Wireshark packet.
-The viewer copies Wireshark's protocol tree and data sources, resolves their
-reported byte and bit ranges, and displays an interactive protocol stack or
-wrapped field layout. It does not parse protocols independently.
+Inspect where a decoded Wireshark field is encoded in the packet. The default
+**Byte & bit map** aligns fields with source-byte offsets and actual binary
+values; selecting a field links its decoded meaning, location, and raw bytes.
+An optional native OpenGL protocol stack supports exploring encapsulation.
+Both views use deep copies of Wireshark's own dissection, not independent parsers.
 
 Target: **Wireshark 4.7.4 development**, commit
 `9fc76ca769c9226b3d484cc43e5b62289fab1da3`. This is a source-integrated UI
@@ -11,7 +12,7 @@ plugin for this pinned revision, not a binary for distribution Wireshark 4.2.
 See [compatibility](docs/WIRESHARK_COMPATIBILITY.md) and the executed
 [version gate](docs/VERSION_GATE.md).
 
-![Native viewer with synthetic IEC 60870-5-104 traffic](docs/viewer.png)
+![Aligned byte and bit map of a synthetic Modbus packet](docs/viewer.png)
 
 Build requirements: C++20 compiler, CMake >=3.22 (upstream requirements also
 apply), Ninja, Python 3, Qt 6 including Widgets/OpenGL/OpenGLWidgets, and
@@ -30,6 +31,28 @@ plugin directory. Do not copy it into an unrelated Wireshark installation.
 Detailed dependency, installation, Windows and macOS instructions are in
 [BUILD.md](docs/BUILD.md).
 
+Start with a concrete question: **where is this command or measurement encoded?**
+
+1. Select a packet, then select a field in the map or protocol tree.
+2. Read the selected-field explanation above the map: Wireshark's decoded value,
+   source-relative byte offset, container length, and represented bit count.
+3. Follow the black outlined range to the highlighted binary digits and raw
+   bytes. Generated fields instead explain that they have no direct wire range.
+4. Use **Emphasize protocol** to dim other interpretations while keeping every
+   byte in its original position. Choose 4, 8, or 16 bytes per row for readability.
+5. Use the source selector for additional buffers; a reassembled buffer is
+   explicitly separate from the captured frame.
+
+For the synthetic Modbus fixture, selecting `modbus.func_code` shows the decoded
+function and its seven represented bits within byte 61. Selecting
+`mbtcp.trans_id` shows transaction identifier 4660, bytes 54–55, and raw `12 34`.
+The viewer explains available dissection metadata; it does not diagnose attacks
+or automatically judge whether a command is appropriate.
+
+In the map, click selects a field and the mouse wheel scrolls through byte rows.
+Small fields remain accessible by hover or the tree. **3D protocol stack** is
+an optional mode with the following controls:
+
 | Input | Action |
 |---|---|
 | Left drag | Orbit freely |
@@ -41,14 +64,15 @@ Detailed dependency, installation, Windows and macOS instructions are in
 | L / G | Labels / generated-field tree entries |
 | Escape | Clear field selection |
 
-The toolbar also provides these actions, field fitting, mode selection,
-32/64/128-bit row widths, and layer spacing. Click a field or a protocol-tree
+The 3D toolbar provides camera actions, field fitting, and layer spacing.
+The shared row control represents 32/64/128 bits (4/8/16 bytes). Click a field or a protocol-tree
 entry for metadata. Hover a rendered field for metadata. The raw view shows
 hex and MSB-first binary values, highlighting the selected range in its own
 data source. Selecting a field in native Packet Details updates the plugin;
 reverse selection into native Packet Details is not exposed by the plugin API.
 
-**Interpretation:** X is bit position within a wrapped row; Y identifies the
+**Interpretation:** Map width is linear in represented bits, with fixed row
+height. Protocol emphasis changes color only. In the 3D view, X is bit position within a wrapped row; Y identifies the
 row. One unit of planar width is one bit. Row gaps, shallow thickness, camera,
 colors and Z layer separation are presentational. Volume is not a packet
 quantity. Later protocol interpretations take canonical precedence, then deeper

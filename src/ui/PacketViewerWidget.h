@@ -3,6 +3,8 @@
 #include "rendering/PacketRenderer.h"
 #include "FieldInspector.h"
 #include "RawByteView.h"
+#include "PacketByteMap.h"
+#include <QStackedWidget>
 #include <QTreeWidget>
 #include <QComboBox>
 #include <QLabel>
@@ -18,6 +20,11 @@ public:
     void selectField(int);
     Packet model;
     PacketRenderer* renderer;
+    PacketByteMap* byteMap;
+    QStackedWidget* views;
+    QComboBox* viewMode;
+    QComboBox* protocolFocus;
+    QLabel* selectionSummary;
     RawByteView* bytes;
     FieldInspector* inspector;
     QTreeWidget* tree;

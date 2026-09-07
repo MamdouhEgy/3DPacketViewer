@@ -7,9 +7,9 @@ These are executed results, not proposed tests. Raw reports are in `validation/`
 |---|---:|---:|---:|
 | Qt Test core cases (including init/cleanup) | 25 | 0 | 0 |
 | Fixture/invariant/tshark checks | 236 | 0 | 0 |
-| Native in-process Wireshark GUI checks | 47 | 0 | 0 |
+| Native in-process Wireshark GUI checks | 59 | 0 | 0 |
 | Relevant upstream Wireshark tests | 55 | 0 | 11 |
-| Distinct checks above | **363** | **0** | **11** |
+| Distinct checks above | **375** | **0** | **11** |
 
 Independent standalone configure/build and CTest: PASS (one CTest entry runs
 all 25 core results). Clean integrated configure and full Wireshark build:
@@ -17,6 +17,26 @@ PASS. Module loads from the versioned UI plugin directory. Current upstream
 check_apis.py: zero warnings. Project compiler warnings: none observed.
 The source integration script was executed twice against the same checkout:
 PASS, no additional upstream modification required.
+
+## Byte-map redesign (0.2.0)
+
+Executed after the redesign: fresh standalone Debug configure/build/CTest,
+25 core results, rebuilt normal and fully instrumented native modules,
+236 fixture checks, and 59 native GUI checks on both normal and ASan/UBSan
+builds (exit 0). API checks reported zero warnings; formatting and diff checks
+passed. New reports are in `validation/redesign/`; the original reports remain
+as historical evidence. The full unmodified/integrated Wireshark builds and
+55 upstream passes/11 skips above are retained from the initial validation;
+the upstream suite was not repeated for this UI-only change.
+
+Twelve added GUI checks cover default map visibility, actual mouse picking,
+the known Modbus transaction ID/value/location, exact selected bits, protocol
+emphasis without relocation, wrapping without semantic changes, generated
+fields with no positions, switching to 3D, separate reassembly source selection,
+one-bit flag neighbor exclusion, structural parent overlay without a tile, and
+restoring the map after capture changes. The updated screenshot is a real
+native rendering of the synthetic Modbus fixture. These checks establish
+behavior and mapping, not measured improvements in analyst productivity.
 
 ## Fixture ground truth
 
@@ -78,7 +98,7 @@ is NOT SUPPORTED by the exported interface; viewer-local selection is tested.
 A separate **full Wireshark Debug build**, including the plugin, was compiled
 with ENABLE_ASAN=ON and ENABLE_UBSAN=ON. Core and all fixture checks passed with
 ASAN_OPTIONS=detect_leaks=1 and UBSAN_OPTIONS=halt_on_error=1. The isolated GUI
-run passed all 47 checks and exited 0 with the same sanitizer settings.
+run passed all 59 checks and exited 0 with the same sanitizer settings.
 No sanitizer suppression was used.
 
 The original desktop GUI run **failed LeakSanitizer at shutdown**: 553 bytes
@@ -116,5 +136,5 @@ tests (not built), and one Lua test (disabled in this configuration). See the
 raw pytest report for exact cases. Windows, macOS, ARM and alternate GPU drivers
 were unavailable and are NOT TESTED. No claim is made for exhaustive dissector,
 decryption/decompression, live-capture, or every malformed-input coverage.
-The GitHub workflow is supplied separately; local results above do not imply
-that a hosted runner has completed it.
+The initial commit’s complete hosted workflow succeeded (run 34127913363).
+That historical result does not establish the outcome of a later commit’s CI run.

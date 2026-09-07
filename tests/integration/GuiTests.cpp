@@ -33,6 +33,48 @@ void runPacketViewerGuiTests(pv::PacketViewerWidget* v, QWidget* host)
     check("open Modbus", open("modbus"));
     check(
         "selected packet model", v->model && v->model->frame == 1 && v->model->protocols.contains("modbus"));
+    check("byte map is default", v->views->currentWidget() == v->byteMap && v->byteMap->isVisible());
+    int mapTarget = -1;
+    for (const auto& f : v->model->fields)
+        if (f.abbreviation == "mbtcp.trans_id")
+            mapTarget = f.id;
+    v->selectField(mapTarget);
+    QTest::qWait(100);
+    const auto targetRect = v->byteMap->fieldRect(mapTarget);
+    v->selectField(-1);
+    QTest::mouseClick(v->byteMap->viewport(), Qt::LeftButton, Qt::NoModifier, targetRect.center().toPoint());
+    check("byte map field picking",
+        mapTarget >= 0 && !targetRect.isEmpty() && v->renderer->selected == mapTarget);
+    check("byte map decoded explanation",
+        v->selectionSummary->text().contains("4660") && v->selectionSummary->text().contains("54 (0x36)")
+            && v->selectionSummary->text().contains("16 represented bits"));
+    check("byte map exact selected bits",
+        v->byteMap->highlighted(54 * 8) && v->byteMap->highlighted(56 * 8 - 1)
+            && !v->byteMap->highlighted(56 * 8));
+    const auto mapImage = v->byteMap->viewport()->grab().toImage();
+    v->protocolFocus->setCurrentIndex(1);
+    QTest::qWait(50);
+    check("protocol focus changes presentation only",
+        mapImage != v->byteMap->viewport()->grab().toImage() && v->byteMap->fieldRect(mapTarget) == targetRect
+            && v->byteMap->highlighted(54 * 8));
+    v->protocolFocus->setCurrentIndex(0);
+    v->byteMap->setRowBits(32);
+    check("byte map wrapping preserves selection",
+        v->byteMap->highlighted(54 * 8)
+            && v->byteMap->fieldAt(v->byteMap->fieldRect(mapTarget).center().toPoint()) == mapTarget);
+    v->byteMap->setRowBits(64);
+    v->grab().save(dir + "/byte-map-modbus.png");
+    bool generatedMap = false;
+    for (const auto& f : v->model->fields)
+        if (f.generated) {
+            v->selectField(f.id);
+            generatedMap = v->selectionSummary->text().contains("no direct wire range")
+                && !v->byteMap->highlighted(f.start * 8) && v->byteMap->fieldRect(f.id).isEmpty();
+            break;
+        }
+    check("byte map generated fields have no positions", generatedMap);
+    v->viewMode->setCurrentIndex(1);
+    check("3D view remains available", v->views->currentWidget() == v->renderer);
     auto* r = v->renderer;
     QTest::qWait(500);
     check("OpenGL rendering",
@@ -142,6 +184,14 @@ void runPacketViewerGuiTests(pv::PacketViewerWidget* v, QWidget* host)
         if (f.abbreviation == "mbtcp.trans_id")
             derived = f.derived && !f.wireBacked && f.source > 0;
     check("reassembly provenance", derived);
+    bool mapDerived = false;
+    for (const auto& f : v->model->fields)
+        if (f.abbreviation == "mbtcp.trans_id") {
+            v->selectField(f.id);
+            mapDerived = v->selectionSummary->text().contains("separate source")
+                && v->sources->currentIndex() == f.source && v->byteMap->highlighted(f.ranges.front().start);
+        }
+    check("byte map reassembly uses separate source", mapDerived);
     plugin_if_apply_filter("frame.number == 1", true);
     QTest::qWait(200);
     check("display filter update", v->model->frame == 0 || v->model->frame == 1);
@@ -158,8 +208,27 @@ void runPacketViewerGuiTests(pv::PacketViewerWidget* v, QWidget* host)
     const QStringList fixtures = { "ethernet_ipv4_tcp", "ethernet_ipv4_udp", "arp", "icmp", "vlan", "ipv6",
         "tcp_options", "ipv4_options", "bit_fields", "truncated", "malformed", "ip_reassembly", "iec104",
         "goose", "mms", "sampled_values", "dnp3", "goose_many_fields", "zero_length" };
-    for (const auto& name : fixtures)
+    for (const auto& name : fixtures) {
         check("GUI fixture " + name, open(name) && v->model && pv::validateModel(*v->model).isEmpty());
+        if (name == "bit_fields") {
+            bool syn = false;
+            for (const auto& f : v->model->fields)
+                if (f.abbreviation == "tcp.flags.syn") {
+                    v->selectField(f.id);
+                    syn = v->byteMap->highlighted(382) && !v->byteMap->highlighted(381)
+                        && !v->byteMap->highlighted(383);
+                }
+            check("byte map one-bit flag excludes neighbors", syn);
+            bool parent = false;
+            for (const auto& f : v->model->fields)
+                if (f.abbreviation == "ip") {
+                    v->selectField(f.id);
+                    parent = v->byteMap->fieldRect(f.id).isEmpty() && v->byteMap->highlighted(112)
+                        && !v->byteMap->highlighted(111);
+                }
+            check("byte map structural parent highlights without duplicate tile", parent);
+        }
+    }
     check("reopen capture", open("modbus"));
     const auto generation2 = v->model->generation;
     // Exercise normal user actions by their Qt QAction object names in test code only.
@@ -192,6 +261,11 @@ void runPacketViewerGuiTests(pv::PacketViewerWidget* v, QWidget* host)
             break;
         }
     QTest::qWait(100);
+    v->viewMode->setCurrentIndex(0);
+    QTest::qWait(100);
+    check("map restored after capture changes",
+        v->views->currentWidget() == v->byteMap
+            && v->selectionSummary->text().contains("iec60870_asdu.typeid"));
     v->grab().save(dir + "/viewer.png");
     QFile out(dir + "/gui-results.json");
     if (out.open(QIODevice::WriteOnly))

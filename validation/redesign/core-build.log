@@ -1,0 +1,15 @@
+[0/1] Re-running CMake...
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/user/3DPacketViewer/build-redesign
+[1/9] Automatic MOC for target packetviewer_core
+[2/7] Automatic MOC for target packetviewer_core_tests
+[3/5] Automatic MOC for target packetviewer_ui
+Internal ctest changing into directory: /home/user/3DPacketViewer/build-redesign
+Test project /home/user/3DPacketViewer/build-redesign
+    Start 1: packetviewer_core
+1/1 Test #1: packetviewer_core ................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.01 sec
