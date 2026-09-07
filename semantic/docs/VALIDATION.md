@@ -6,14 +6,15 @@ Target: Wireshark 4.7.4 development, `9fc76ca769c9226b3d484cc43e5b62289fab1da3`;
 |---|---|
 | Fresh standalone Debug configure/build | PASS; core, serializer, provider, AI panel and tests built from an empty build directory |
 | Native release configure/build | PASS; final UI module built with `SSPA_GUI_TESTS=OFF`; upstream EPAN/dissectors rebuilt during final release configure |
-| Offline core/context/privacy unit suite | 36 passed, 0 failed (includes Qt initialization/cleanup cases) |
+| Offline core/context/privacy unit suite | 38 passed, 0 failed (includes Qt initialization/cleanup cases) |
 | Deterministic network transport regression | 15 passed, 0 failed (includes Qt initialization/cleanup cases) |
 | Synthetic capture integration and independent field-location checks | 167 passed, 0 failed |
 | Installed user-bundle native GUI | 36 passed, 0 failed; installed-library compatibility and clean shutdown verified |
 | Native offline GUI under ASan/UBSan | 36 passed, 0 failed; process exited normally with code 0 |
-| Live OpenCode GUI acceptance run | 42 passed, 0 failed; includes the then-current 35 offline GUI checks plus 7 live acceptance checks; not 42 additional independent tests |
-| ASan/UBSan unit and network suites | 36 + 15 passed; no sanitizer error |
+| Live OpenCode GUI acceptance run | 43 passed, 0 failed; includes 36 offline GUI checks plus 7 live acceptance checks; normal process exit code 0 |
+| ASan/UBSan unit and network suites | 38 + 15 passed; no sanitizer error |
 | ASan/UBSan fixture integration | 167 passed; no sanitizer error |
+| Live AI GUI under ASan/UBSan | 43 functional checks passed; **FAIL at shutdown**: LeakSanitizer reports 141 bytes in 6 allocations in the system proxy path |
 | Wireshark upstream file-format / command-line suites | 44 passed, 11 skipped; executed with instrumented binaries |
 | Wireshark source API checker | 0 warnings |
 | Source credential-pattern scan | 0 credential-token patterns found |
@@ -24,7 +25,7 @@ The 11 upstream skips concern disabled live capture, Lua, and Stratoshark, as re
 
 The actual native Wireshark viewer opened the synthetic IEC104 capture. The command used activation frame 6, confirmation 7 and termination 8: measured duration 42 ms. Frames 9–12 contain Wireshark-decoded IEEE-754 single-precision values approximately 101.2, 102.1, 150.4 and 151.0, spaced one second apart. Computed deltas/rates preserve decoded floating-point precision; they are not rounded into invented exact wire values.
 
-The user-enabled AI checkbox initiated dynamic catalog/API discovery. The selected discovered model was `gpt-5.6-luna`, Responses API. The reviewed request contained only frames 9–12, 15,610 JSON bytes, and a 2048-token response limit. Request timestamp: `2026-09-07T18:12:11.769Z`. The response was accepted as `AI_DERIVED_OBSERVATION`; its evidence-frame navigation reached the corresponding Wireshark packet. Disabling AI prevented new discovery requests. Deterministic event/finding state remained unchanged.
+The user-enabled AI checkbox initiated dynamic catalog/API discovery. The selected discovered model was `gpt-5.6-luna`, Responses API. The reviewed request contained only frames 9–12, 12,721 JSON bytes, and a 2048-token response limit. Request timestamp: `2026-09-07T19:26:52.650Z`. The response was accepted as `AI_DERIVED_OBSERVATION`; its evidence-frame navigation reached the corresponding Wireshark packet. Disabling AI prevented new discovery requests. Deterministic event/finding state remained unchanged.
 
 Only synthetic information was sent. The test key was supplied over echo-disabled stdin, kept in memory and not written to source, reports or logs. The request and validated result are retained in `results/synthetic-ai-request.json` and `results/synthetic-ai-result.json`; neither contains a credential. The provider's free-text conclusion is not treated as independent protocol truth.
 
@@ -51,8 +52,20 @@ Executed tests cover AI-off zero requests, cancellation, dynamic adapter discove
 
 ## Performance observations
 
-The 21 fixture captures' final release CLI process runtimes had median 85.674 ms and maximum 88.765 ms on this machine. These include EPAN startup, file I/O, extraction, state processing, serialization and process teardown; they are **not** per-packet tap latency or an industrial throughput claim. Exact rows are in `results/benchmark.json`. A 10,000-event unit regression verifies bounded context summarization over all selected observations. The viewer uses Qt models, not one widget per event, and never automatically rescans on every packet selection.
+The 21 fixture captures' final release CLI process runtimes had median 83.176 ms and maximum 93.549 ms on this machine. These include EPAN startup, file I/O, extraction, state processing, serialization and process teardown; they are **not** per-packet tap latency or an industrial throughput claim. Exact rows are in `results/benchmark.json`. A 10,000-event unit regression verifies bounded context summarization over all selected observations. The viewer uses Qt models, not one widget per event, and never automatically rescans on every packet selection.
 
 The full-tree tap requirement adds Wireshark dissection work while the viewer is open. Event/transaction/finding limits are explicit; reaching them yields partial-results diagnostics. No claim is made that the current limits support unbounded live captures or every industrial SV rate.
 
 The final endpoint-provenance regression checks all 21 fixtures for nonempty source/destination identity. Exported-PDU MMS uses visible exported-PDU address fields; events lacking endpoint identity are retained but excluded from correlation.
+
+## State versus measurement statistics
+
+Executed regressions ensure that COT, quality masks, sequence/configuration codes, Boolean values and decoded double-point states use observation/change counts rather than measurement means or rates. Numeric measurement series retain deterministic differences, timing and summary statistics. The final live request includes this distinction.
+
+## Isolated dependency leak
+
+The real-network sanitizer run passed all 43 functional assertions but exited with code 1 after LeakSanitizer reported 141 bytes in six allocations. Stacks enter `g_list_append` / `g_strdup` from `libpxbackend-1.0.so`, through `px_proxy_factory_new` and Qt's `QNetworkProxyFactory::systemProxyForQuery`. The standalone `tools/diagnostics/qt_proxy_leak.cpp`, which uses neither Wireshark nor the analyzer, reproduces exactly 141 bytes/six allocations on this host. The independent diagnostic report is retained in `results/proxy-leak-asan.txt`. No suppression or change to proxy routing was made. This live-network sanitizer gate remains **FAIL**; it is not merged into the passing offline sanitizer results.
+
+The normal final live run exited with code 0. An earlier normal launch was terminated by signal 9 before producing any checks; the cause was not established and that launch is not counted as a successful run. The successful rerun's process result and 43 assertions are retained.
+
+GitHub Actions full native build and GUI validation passed for implementation commit `ac41a2a9448db58de60bceb61fc877b428db1753` ([run 34153308989](https://github.com/MamdouhEgy/3DPacketViewer/actions/runs/34153308989)). Final state-statistics changes were additionally rebuilt and tested locally as recorded above; subsequent CI status must be read from the repository rather than inferred from this earlier run.

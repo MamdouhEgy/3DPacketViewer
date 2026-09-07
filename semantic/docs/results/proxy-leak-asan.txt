@@ -1,0 +1,133 @@
+
+(process:9): dconf-CRITICAL **: 21:10:48.659: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.660: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.660: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.660: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.660: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.663: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.664: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.664: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.664: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.664: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+(process:9): dconf-CRITICAL **: 21:10:48.668: unable to create file '/run/user/1000/dconf/user': Read-only file system.  dconf will not work properly.
+
+=================================================================
+==9==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x74bb488fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x74bb48119ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x74bb4810edf0 in g_list_append (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x57df0) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #3 0x74bb47960104  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x8104) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #4 0x74bb47481bb9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26bb9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #5 0x74bb47483e7c in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28e7c) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x74bb4795dcf2 in px_manager_new_with_options (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x5cf2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #7 0x74bb487112ce in px_proxy_factory_new (/lib/x86_64-linux-gnu/libproxy.so.1+0x12ce) (BuildId: 50eee0fbafffcb5286084046a740c2fc32c3d651)
+    #8 0x74bb4901d00c  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0xfd00c) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #9 0x74bb49022435 in QNetworkProxyFactory::systemProxyForQuery(QNetworkProxyQuery const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0x102435) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #10 0x64c0cf2006d9 in main /tmp/sspa-proxy-leak.cpp:6
+    #11 0x74bb47a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #12 0x74bb47a2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #13 0x64c0cf200424 in _start (/tmp/sspa-proxy-leak+0x2424) (BuildId: 7b4050046b0a6bd040b87f5341551fc78eced530)
+
+Direct leak of 21 byte(s) in 1 object(s) allocated from:
+    #0 0x74bb488fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x74bb48119ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x74bb4812f498 in g_strdup (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x78498) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #3 0x74bb4795d35a  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x535a) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #4 0x74bb474811f9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x261f9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #5 0x74bb47481b97  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26b97) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x74bb47483bc2 in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28bc2) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x74bb47483f4e in g_object_new (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28f4e) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #8 0x74bb4795ee66  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x6e66) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #9 0x74bb47960084  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x8084) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #10 0x74bb47481bb9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26bb9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #11 0x74bb47483e7c in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28e7c) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #12 0x74bb4795dcf2 in px_manager_new_with_options (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x5cf2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #13 0x74bb487112ce in px_proxy_factory_new (/lib/x86_64-linux-gnu/libproxy.so.1+0x12ce) (BuildId: 50eee0fbafffcb5286084046a740c2fc32c3d651)
+    #14 0x74bb4901d00c  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0xfd00c) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #15 0x74bb49022435 in QNetworkProxyFactory::systemProxyForQuery(QNetworkProxyQuery const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0x102435) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #16 0x64c0cf2006d9 in main /tmp/sspa-proxy-leak.cpp:6
+    #17 0x74bb47a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #18 0x74bb47a2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #19 0x64c0cf200424 in _start (/tmp/sspa-proxy-leak+0x2424) (BuildId: 7b4050046b0a6bd040b87f5341551fc78eced530)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x74bb488fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x74bb48119ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x74bb481108a1  (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x598a1) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #3 0x74bb4795eeb2  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x6eb2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #4 0x74bb47960074  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x8074) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #5 0x74bb47481bb9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26bb9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x74bb47483e7c in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28e7c) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x74bb4795dcf2 in px_manager_new_with_options (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x5cf2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #8 0x74bb487112ce in px_proxy_factory_new (/lib/x86_64-linux-gnu/libproxy.so.1+0x12ce) (BuildId: 50eee0fbafffcb5286084046a740c2fc32c3d651)
+    #9 0x74bb4901d00c  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0xfd00c) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #10 0x74bb49022435 in QNetworkProxyFactory::systemProxyForQuery(QNetworkProxyQuery const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0x102435) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #11 0x64c0cf2006d9 in main /tmp/sspa-proxy-leak.cpp:6
+    #12 0x74bb47a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #13 0x74bb47a2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #14 0x64c0cf200424 in _start (/tmp/sspa-proxy-leak+0x2424) (BuildId: 7b4050046b0a6bd040b87f5341551fc78eced530)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x74bb488fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x74bb48119ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x74bb481108a1  (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x598a1) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #3 0x74bb4795eeb2  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x6eb2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #4 0x74bb47960084  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x8084) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #5 0x74bb47481bb9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26bb9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x74bb47483e7c in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28e7c) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x74bb4795dcf2 in px_manager_new_with_options (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x5cf2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #8 0x74bb487112ce in px_proxy_factory_new (/lib/x86_64-linux-gnu/libproxy.so.1+0x12ce) (BuildId: 50eee0fbafffcb5286084046a740c2fc32c3d651)
+    #9 0x74bb4901d00c  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0xfd00c) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #10 0x74bb49022435 in QNetworkProxyFactory::systemProxyForQuery(QNetworkProxyQuery const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0x102435) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #11 0x64c0cf2006d9 in main /tmp/sspa-proxy-leak.cpp:6
+    #12 0x74bb47a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #13 0x74bb47a2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #14 0x64c0cf200424 in _start (/tmp/sspa-proxy-leak+0x2424) (BuildId: 7b4050046b0a6bd040b87f5341551fc78eced530)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x74bb488fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x74bb48119ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x74bb481108a1  (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x598a1) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #3 0x74bb4795eeb2  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x6eb2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #4 0x74bb47960064  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x8064) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #5 0x74bb47481bb9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26bb9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x74bb47483e7c in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28e7c) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x74bb4795dcf2 in px_manager_new_with_options (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x5cf2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #8 0x74bb487112ce in px_proxy_factory_new (/lib/x86_64-linux-gnu/libproxy.so.1+0x12ce) (BuildId: 50eee0fbafffcb5286084046a740c2fc32c3d651)
+    #9 0x74bb4901d00c  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0xfd00c) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #10 0x74bb49022435 in QNetworkProxyFactory::systemProxyForQuery(QNetworkProxyQuery const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0x102435) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #11 0x64c0cf2006d9 in main /tmp/sspa-proxy-leak.cpp:6
+    #12 0x74bb47a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #13 0x74bb47a2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #14 0x64c0cf200424 in _start (/tmp/sspa-proxy-leak+0x2424) (BuildId: 7b4050046b0a6bd040b87f5341551fc78eced530)
+
+Indirect leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x74bb488fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x74bb48119ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x74bb48110939  (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x59939) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #3 0x74bb4795eeb2  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x6eb2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #4 0x74bb47960054  (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x8054) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #5 0x74bb47481bb9  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x26bb9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x74bb47483e7c in g_object_new_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x28e7c) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x74bb4795dcf2 in px_manager_new_with_options (/usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so+0x5cf2) (BuildId: 1c5e0b8ce58642bcac39f4bebc7454e504b60fbb)
+    #8 0x74bb487112ce in px_proxy_factory_new (/lib/x86_64-linux-gnu/libproxy.so.1+0x12ce) (BuildId: 50eee0fbafffcb5286084046a740c2fc32c3d651)
+    #9 0x74bb4901d00c  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0xfd00c) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #10 0x74bb49022435 in QNetworkProxyFactory::systemProxyForQuery(QNetworkProxyQuery const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Network.so.6+0x102435) (BuildId: 4bc092d2f695f6252ca3475add6b3b320b112e85)
+    #11 0x64c0cf2006d9 in main /tmp/sspa-proxy-leak.cpp:6
+    #12 0x74bb47a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #13 0x74bb47a2a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #14 0x64c0cf200424 in _start (/tmp/sspa-proxy-leak+0x2424) (BuildId: 7b4050046b0a6bd040b87f5341551fc78eced530)
+
+SUMMARY: AddressSanitizer: 141 byte(s) leaked in 6 allocation(s).

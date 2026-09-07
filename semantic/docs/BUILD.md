@@ -26,3 +26,12 @@ Set `SSPA_GUI_TESTS=ON` only for development. `SSPA_TEST_DIR` activates the synt
 For the opt-in live synthetic AI test, add `--live-ai` to `semantic/tools/run_gui.py`. The runner disables terminal echo, hands the session key to the test via stdin, and sends only a reviewed synthetic frame range. It never passes a key on the command line or writes it to a file. This mode is excluded from CI and should not be enabled on real captures.
 
 Configure a separate upstream Debug build with `ENABLE_ASAN=ON` and `ENABLE_UBSAN=ON`, compile the native module/tests, then run unit, fixture and GUI checks with `ASAN_OPTIONS=detect_leaks=1 UBSAN_OPTIONS=halt_on_error=1`. The GUI runner isolates desktop DBus services to avoid unrelated platform-service leak retention; it does not suppress sanitizer findings. See executed results in VALIDATION.md.
+
+The live AI sanitizer run exposed a system-libproxy shutdown leak independently reproduced with `tools/diagnostics/qt_proxy_leak.cpp`. To reproduce on a system with Qt development packages:
+
+```sh
+c++ -fsanitize=address -g semantic/tools/diagnostics/qt_proxy_leak.cpp -o /tmp/qt-proxy-leak $(pkg-config --cflags --libs Qt6Core Qt6Network)
+ASAN_OPTIONS=detect_leaks=1 /tmp/qt-proxy-leak
+```
+
+This diagnostic queries system proxy configuration. It does not authenticate, send semantic content, or load the plugin. No workaround disables the operator's proxy settings and no leak suppression is installed.

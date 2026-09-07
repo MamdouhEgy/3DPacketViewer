@@ -23,6 +23,8 @@ PASS   : SemanticTests::invalidIntervals()
 PASS   : SemanticTests::selectionPrivacy()
 PASS   : SemanticTests::transactionContextIsolation()
 PASS   : SemanticTests::contextSummarization()
+PASS   : SemanticTests::booleanAndDoublePointState()
+PASS   : SemanticTests::symbolicCodesAreNotMeasurements()
 PASS   : SemanticTests::comparison()
 PASS   : SemanticTests::gooseRegression()
 PASS   : SemanticTests::svWrap()
@@ -36,5 +38,5 @@ PASS   : SemanticTests::adapters()
 PASS   : SemanticTests::maliciousOutput()
 PASS   : SemanticTests::disabledNetwork()
 PASS   : SemanticTests::cleanupTestCase()
-Totals: 36 passed, 0 failed, 0 skipped, 0 blacklisted, 590ms
+Totals: 38 passed, 0 failed, 0 skipped, 0 blacklisted, 669ms
 ********* Finished testing of SemanticTests *********

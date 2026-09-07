@@ -48,10 +48,12 @@ Context buildContext(const Engine& engine, const Selector& query, const ContextL
     }
     QMap<QString, QVector<Sample>> samples;
     QMap<QString, Series> seriesInfo;
+    QMap<QString, StateSeries> stateSeries;
     QVector<int> selected;
     QSet<QString> selectedIds;
-    const QStringList numeric { "value", "command_value", "st_num", "sq_num", "sample_count", "tx", "rx",
-        "conf_rev", "quality", "sample_sync", "cot" };
+    const QStringList numeric { "value", "command_value" };
+    const QStringList symbolic { "st_num", "sq_num", "sample_count", "tx", "rx", "conf_rev", "quality",
+        "sample_sync", "cot" };
     for (int position : candidates) {
         const auto& e = engine.events[position];
         if (!query.protocol.isEmpty() && e.protocol != query.protocol)
@@ -83,10 +85,46 @@ Context buildContext(const Engine& engine, const Selector& query, const ContextL
         }
         if (e.reordered)
             ++c.reordered;
+        auto recordState = [&](const QString& name, double value) {
+            const QString key = measurementKey(e) + ":" + name;
+            if (!stateSeries.contains(key) && samples.size() + stateSeries.size() >= limits.maxSeries) {
+                c.diagnostic = "Too many semantic series; narrow the context.";
+                return false;
+            }
+            auto& state = stateSeries[key];
+            if (!state.observations) {
+                state.identity = key;
+                state.protocol = e.protocol;
+                state.object = e.object;
+                state.feature = name;
+                state.firstFrame = e.frame;
+                state.firstValue = value;
+            } else if (state.lastValue != value)
+                ++state.changes;
+            ++state.observations;
+            state.lastFrame = e.frame;
+            state.lastValue = value;
+            return true;
+        };
+        for (const auto& name : symbolic)
+            if (const auto value = e.number(name))
+                if (!recordState(name, *value))
+                    return c;
         for (const auto& name : numeric)
             if (const auto value = e.number(name)) {
+                const auto& v = e.values[name];
+                const bool code = v.data.metaType().id() == QMetaType::Bool
+                    || std::any_of(v.evidence.begin(), v.evidence.end(), [](const Evidence& evidence) {
+                           return evidence.field == "iec60870_asdu.diq.dpi"
+                               || evidence.field == "iec60870_asdu.dco.on";
+                       });
+                if (code) {
+                    if (!recordState(name, *value))
+                        return c;
+                    continue;
+                }
                 const QString key = measurementKey(e) + ":" + name;
-                if (!samples.contains(key) && samples.size() >= limits.maxSeries) {
+                if (!samples.contains(key) && samples.size() + stateSeries.size() >= limits.maxSeries) {
                     c.diagnostic = "Context contains too many distinct series; narrow the selection or "
                                    "increase the series limit.";
                     return c;
@@ -95,6 +133,8 @@ Context buildContext(const Engine& engine, const Selector& query, const ContextL
                 seriesInfo[key] = { key, e.protocol, e.object, name, {}, {} };
             }
     }
+    for (const auto& state : stateSeries)
+        c.states.push_back(state);
     c.summarized = selected.size() > limits.maxEvents;
     QSet<int> representatives;
     if (!selected.empty()) {

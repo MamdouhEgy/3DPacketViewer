@@ -112,7 +112,7 @@ QString Sanitizer::token(const QString& kind, const QString& original)
 }
 QJsonObject Sanitizer::encode(const Context& c)
 {
-    QJsonArray events, series, transactions, findings, ranges;
+    QJsonArray events, series, states, transactions, findings, ranges;
     const QSet<QString> protocols { "IEC104", "GOOSE", "SV", "MMS", "MODBUS", "DNP3" };
     const QSet<QString> types { "APCI", "CONTROL", "MEASUREMENT", "ASDU", "PUBLISH", "DATASET_VALUE",
         "SAMPLE", "REGISTER", "REQUEST", "RESPONSE", "UNRESOLVED", "ERROR", "UNCONFIRMED", "APPLICATION",
@@ -160,6 +160,18 @@ QJsonObject Sanitizer::encode(const Context& c)
             { "object", token("object", s.object) }, { "feature", s.feature },
             { "statistics", stats(s.statistics) }, { "representative_observations", points } });
     }
+    for (const auto& s : c.states) {
+        if (!protocols.contains(s.protocol) || !allowed.contains(s.feature))
+            continue;
+        states.append(QJsonObject { { "series_id", token("series", s.identity) }, { "protocol", s.protocol },
+            { "object", token("object", s.object) }, { "feature", s.feature },
+            { "observation_count", s.observations }, { "observed_change_count", s.changes },
+            { "first_frame", qint64(s.firstFrame) }, { "last_frame", qint64(s.lastFrame) },
+            { "first_code", s.firstValue }, { "last_code", s.lastValue },
+            { "interpretation",
+                "Decoded codes/counters: changes are observations; protocol modules establish sequencing. No "
+                "mean or physical magnitude is implied." } });
+    }
     const QRegularExpression safeId("^[A-Z0-9_:-]{1,200}$");
     for (const auto& f : c.findings) {
         if (!protocols.contains(f.protocol) || !safeId.match(f.rule).hasMatch())
@@ -205,7 +217,8 @@ QJsonObject Sanitizer::encode(const Context& c)
                            "adjacent changes; bounded transactions"
                          : "Full selected semantic events" },
         { "evidence_frame_ranges", ranges }, { "events", events }, { "series", series },
-        { "transactions", transactions }, { "deterministic_findings", findings } };
+        { "state_series", states }, { "transactions", transactions },
+        { "deterministic_findings", findings } };
 }
 SanitizedContext Sanitizer::build(const Context& c)
 {

@@ -303,6 +303,42 @@ private slots:
         QCOMPARE(c.series.front().statistics.count, 600);
         QVERIFY(!c.diagnostic.isEmpty());
     }
+    void booleanAndDoublePointState()
+    {
+        Engine e;
+        auto a = event("GOOSE", "DATASET_VALUE", 1);
+        value(a, "value", true, "goose.boolean");
+        e.ingest(a);
+        auto b = event("IEC104", "MEASUREMENT", 2);
+        value(b, "value", 2, "iec60870_asdu.diq.dpi");
+        e.ingest(b);
+        auto c = buildContext(e, {});
+        QVERIFY(c.series.empty());
+        QCOMPARE(c.states.size(), 2);
+    }
+    void symbolicCodesAreNotMeasurements()
+    {
+        Engine e;
+        for (int i = 1; i <= 3; ++i) {
+            auto a = event("IEC104", "MEASUREMENT", i);
+            value(a, "value", 100 + i);
+            value(a, "cot", i == 1 ? 3 : 20);
+            value(a, "quality", i == 1 ? 0 : 128);
+            e.ingest(a);
+        }
+        auto c = buildContext(e, {});
+        QCOMPARE(c.series.size(), 1);
+        QCOMPARE(c.series[0].feature, QString("value"));
+        QCOMPARE(c.states.size(), 2);
+        for (const auto& state : c.states) {
+            QCOMPARE(state.observations, 3);
+            QCOMPARE(state.changes, 1);
+        }
+        Sanitizer s;
+        auto json = s.build(c).json;
+        QCOMPARE(json["state_series"].toArray().size(), 2);
+        QVERIFY(!json["state_series"].toArray()[0].toObject().contains("mean"));
+    }
     void comparison()
     {
         Engine e;
