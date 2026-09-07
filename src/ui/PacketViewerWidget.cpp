@@ -129,7 +129,7 @@ PacketViewerWidget::PacketViewerWidget(QWidget* parent)
     bytes = new RawByteView(this);
     bytes->setMaximumHeight(155);
     layout->addWidget(
-        new QLabel("Selected source bytes · offsets in hex · highlighted bits are MSB first", this));
+        new QLabel("Offsets (hex) → Selected source bytes (hex) → Binary bits (MSB first)", this));
     layout->addWidget(bytes);
     auto* legend = new QLabel(
         "Map: equal width per bit · row height has no quantitative meaning · colors identify protocols · "
