@@ -1,0 +1,17 @@
+ninja: Entering directory `/tmp/sspa-libproxy-build'
+ninja: no work to do.
+1/6 Libproxy test           OK              0.02s
+2/6 Config sysconfig test   OK              0.02s
+3/6 Config GNOME test       OK              0.02s
+4/6 Config Environment test OK              0.03s
+5/6 PX Manager test         OK              0.04s
+6/6 Config KDE test         OK              0.03s
+
+Ok:                 6
+Expected Fail:      0
+Fail:               0
+Unexpected Pass:    0
+Skipped:            0
+Timeout:            0
+
+Full log written to /tmp/sspa-libproxy-build/meson-logs/testlog.txt

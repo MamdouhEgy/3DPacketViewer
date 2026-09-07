@@ -35,3 +35,19 @@ ASAN_OPTIONS=detect_leaks=1 /tmp/qt-proxy-leak
 ```
 
 This diagnostic queries system proxy configuration. It does not authenticate, send semantic content, or load the plugin. No workaround disables the operator's proxy settings and no leak suppression is installed.
+
+## Verified Linux proxy dependency
+
+The user bundle uses unmodified [libproxy 0.5.12](https://github.com/libproxy/libproxy/releases/tag/0.5.12), commit `99da01926b1b1e303a4d2331bbd74bed424863e7`, to resolve the host's older-library shutdown leak. This is a packaging dependency, not a Wireshark/semantic-engine patch. Linux build dependencies are Meson (validated 1.7.2), Ninja, a C compiler, GLib/GIO development files, libcurl development files, Duktape development files and `gsettings-desktop-schemas-dev`. Keep the default applicable proxy backends enabled.
+
+```sh
+git clone https://github.com/libproxy/libproxy.git libproxy-source
+git -C libproxy-source checkout 99da01926b1b1e303a4d2331bbd74bed424863e7
+meson setup libproxy-build libproxy-source --prefix="$PWD/libproxy-stage" --libdir=lib --buildtype=release -Ddocs=false -Dintrospection=false -Dvapi=false
+meson compile -C libproxy-build
+meson test -C libproxy-build --print-errorlogs
+meson install -C libproxy-build
+python3 semantic/tools/install_proxy_dependency.py --source libproxy-source --stage libproxy-stage --prefix "$HOME/.local/opt/wireshark-4.7.4-3dpacketviewer" --launcher "$HOME/.local/bin/wireshark-3d"
+```
+
+The installer verifies the source revision, keeps libraries confined to the existing user bundle, relocates their runtime lookup paths and installs licensing/source metadata. It updates that bundle's launcher to load its libraries; launching the raw executable without the wrapper can instead select the old system proxy dependency. Distribution-wide updates are not performed. For an isolated sanitizer test before installation, set `LD_LIBRARY_PATH` to the staged `lib` directory; this changes dependency selection, not leak detection or proxy settings.

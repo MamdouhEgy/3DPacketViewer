@@ -14,7 +14,8 @@ Target: Wireshark 4.7.4 development, `9fc76ca769c9226b3d484cc43e5b62289fab1da3`;
 | Live OpenCode GUI acceptance run | 43 passed, 0 failed; includes 36 offline GUI checks plus 7 live acceptance checks; normal process exit code 0 |
 | ASan/UBSan unit and network suites | 38 + 15 passed; no sanitizer error |
 | ASan/UBSan fixture integration | 167 passed; no sanitizer error |
-| Live AI GUI under ASan/UBSan | 43 functional checks passed; **FAIL at shutdown**: LeakSanitizer reports 141 bytes in 6 allocations in the system proxy path |
+| Live AI GUI under ASan/UBSan, with validated libproxy 0.5.12 | 43 passed, process exit 0; no sanitizer report |
+| Libproxy 0.5.12 upstream regression | 6 suites passed, 0 failed |
 | Wireshark upstream file-format / command-line suites | 44 passed, 11 skipped; executed with instrumented binaries |
 | Wireshark source API checker | 0 warnings |
 | Source credential-pattern scan | 0 credential-token patterns found |
@@ -25,7 +26,7 @@ The 11 upstream skips concern disabled live capture, Lua, and Stratoshark, as re
 
 The actual native Wireshark viewer opened the synthetic IEC104 capture. The command used activation frame 6, confirmation 7 and termination 8: measured duration 42 ms. Frames 9–12 contain Wireshark-decoded IEEE-754 single-precision values approximately 101.2, 102.1, 150.4 and 151.0, spaced one second apart. Computed deltas/rates preserve decoded floating-point precision; they are not rounded into invented exact wire values.
 
-The user-enabled AI checkbox initiated dynamic catalog/API discovery. The selected discovered model was `gpt-5.6-luna`, Responses API. The reviewed request contained only frames 9–12, 12,721 JSON bytes, and a 2048-token response limit. Request timestamp: `2026-09-07T19:26:52.650Z`. The response was accepted as `AI_DERIVED_OBSERVATION`; its evidence-frame navigation reached the corresponding Wireshark packet. Disabling AI prevented new discovery requests. Deterministic event/finding state remained unchanged.
+The user-enabled AI checkbox initiated dynamic catalog/API discovery. The selected discovered model was `gpt-5.6-luna`, Responses API. The reviewed request contained only frames 9–12, 12,721 JSON bytes, and a 2048-token response limit. Request timestamp: `2026-09-07T19:37:59.481Z`. The response was accepted as `AI_DERIVED_OBSERVATION`; its evidence-frame navigation reached the corresponding Wireshark packet. Disabling AI prevented new discovery requests. Deterministic event/finding state remained unchanged.
 
 Only synthetic information was sent. The test key was supplied over echo-disabled stdin, kept in memory and not written to source, reports or logs. The request and validated result are retained in `results/synthetic-ai-request.json` and `results/synthetic-ai-result.json`; neither contains a credential. The provider's free-text conclusion is not treated as independent protocol truth.
 
@@ -64,8 +65,10 @@ Executed regressions ensure that COT, quality masks, sequence/configuration code
 
 ## Isolated dependency leak
 
-The real-network sanitizer run passed all 43 functional assertions but exited with code 1 after LeakSanitizer reported 141 bytes in six allocations. Stacks enter `g_list_append` / `g_strdup` from `libpxbackend-1.0.so`, through `px_proxy_factory_new` and Qt's `QNetworkProxyFactory::systemProxyForQuery`. The standalone `tools/diagnostics/qt_proxy_leak.cpp`, which uses neither Wireshark nor the analyzer, reproduces exactly 141 bytes/six allocations on this host. The independent diagnostic report is retained in `results/proxy-leak-asan.txt`. No suppression or change to proxy routing was made. This live-network sanitizer gate remains **FAIL**; it is not merged into the passing offline sanitizer results.
+The real-network sanitizer run passed all 43 functional assertions but exited with code 1 after LeakSanitizer reported 141 bytes in six allocations. Stacks enter `g_list_append` / `g_strdup` from `libpxbackend-1.0.so`, through `px_proxy_factory_new` and Qt's `QNetworkProxyFactory::systemProxyForQuery`. The standalone `tools/diagnostics/qt_proxy_leak.cpp`, which uses neither Wireshark nor the analyzer, reproduces exactly 141 bytes/six allocations on this host. The independent diagnostic report is retained in `results/proxy-leak-asan.txt`. No suppression or change to proxy routing was made. This original live-network sanitizer attempt was **FAIL** and is retained separately as `results/live-asan-system-proxy-process.json`.
 
 The normal final live run exited with code 0. An earlier normal launch was terminated by signal 9 before producing any checks; the cause was not established and that launch is not counted as a successful run. The successful rerun's process result and 43 assertions are retained.
 
 GitHub Actions full native build and GUI validation passed for implementation commit `ac41a2a9448db58de60bceb61fc877b428db1753` ([run 34153308989](https://github.com/MamdouhEgy/3DPacketViewer/actions/runs/34153308989)). Final state-statistics changes were additionally rebuilt and tested locally as recorded above; subsequent CI status must be read from the repository rather than inferred from this earlier run.
+
+Resolution: the unmodified upstream libproxy 0.5.12 release, commit `99da01926b1b1e303a4d2331bbd74bed424863e7`, was built with all applicable default proxy/PAC backends and passed its six upstream test suites. It contains the upstream [list/sysconfig deallocation fixes](https://github.com/libproxy/libproxy/pull/312). The standalone diagnostic then exited with code 0 and no sanitizer report. The complete live Wireshark AI test with this library passed all 43 checks and exited with code 0 under ASan/UBSan. This dependency is installed only in the user bundle, and its launcher resolves it through that bundle's library directory. System packages and proxy configuration are unchanged. LGPL license and source revision are installed alongside the dependency.

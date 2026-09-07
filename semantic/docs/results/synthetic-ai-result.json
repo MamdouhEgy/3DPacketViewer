@@ -10,7 +10,7 @@
         "protocol_module_version": "1.0",
         "provider": "OpenCode Go",
         "request_bytes": 12721,
-        "request_timestamp": "2026-09-07T19:26:52.650Z",
+        "request_timestamp": "2026-09-07T19:37:59.481Z",
         "semantic_schema_version": "1.0"
     },
     "result": {
@@ -18,7 +18,7 @@
         "observations": [
             {
                 "confidence": "high",
-                "description": "The decoded value for IEC104 IOA 1007 changed by approximately 48.3 between frames 10 and 11, following a change of approximately 0.9 between frames 9 and 10. The value then changed only approximately 0.6 by frame 12. This is a temporal anomaly in the supplied series, not confirmation of an attack.",
+                "description": "The measurement value for common address 2, IOA 1007, changed from approximately 102.1 in frame 10 to approximately 150.4 in frame 11, followed by a small increase to 151.0 in frame 12. This is a temporal anomaly in the supplied series, not evidence of an attack or confirmed data manipulation.",
                 "evidence_frames": [
                     9,
                     10,
@@ -26,21 +26,22 @@
                     12
                 ],
                 "possible_explanations": [
-                    "A legitimate step change in the underlying physical process",
-                    "A sensor, transducer, scaling, or acquisition-system transition",
-                    "A transient data-quality or decoding issue not represented by the available fields",
-                    "Unauthorized alteration of the measurement, which cannot be established from these frames alone"
+                    "A genuine rapid change in the underlying process or measured quantity",
+                    "A sensor, scaling, calibration, or acquisition transient",
+                    "A control-system state change occurring between frames 10 and 11",
+                    "An IEC104 source-data or communication issue"
                 ],
                 "recommended_checks": [
-                    "Compare the IOA 1007 values with the underlying process records and independent sensors around frame 11",
-                    "Review device and gateway logs for configuration, restart, calibration, or input-channel changes",
-                    "Inspect additional IEC104 traffic before frame 9 and after frame 12 for persistence or reversion of the change"
+                    "Review the source equipment and process trend around the interval represented by frames 10-12",
+                    "Verify the configured engineering units, scaling, and calibration for IOA 1007",
+                    "Compare the value with redundant sensors or related measurements",
+                    "Inspect source-device logs for a state change, restart, acquisition warning, or quality event"
                 ],
-                "title": "Abrupt measurement transition at frame 11"
+                "title": "Abrupt measurement change at frame 11"
             },
             {
-                "confidence": "high",
-                "description": "Across frames 9–12, the measurement fields show quality 0, negative false, test false, and cause of transmission 3. These stable decoded fields provide no protocol-level indication in the supplied evidence that the abrupt value change was marked as invalid, test data, or a changed transmission cause.",
+                "confidence": "moderate",
+                "description": "Across the contributing frame range 9-12, the IEC104 receive code remained 1, the transmit code advanced from 2 through 5, and the measurement cause of transmission remained 3. Measurement quality was 0 in every observed frame, with negative and test flags false. These observations provide contextual consistency but do not establish that the measurement values are correct.",
                 "evidence_frames": [
                     9,
                     10,
@@ -48,60 +49,20 @@
                     12
                 ],
                 "possible_explanations": [
-                    "The source reported the transition as ordinary valid process data",
-                    "The protocol quality indicators do not encode the type of underlying sensor or application fault",
-                    "A data-source or application-layer problem could occur without changing these fields"
+                    "Normal sequential IEC104 reporting from the source endpoint",
+                    "A valid process change carried by otherwise well-formed protocol messages",
+                    "A source-side data problem not represented by the observed quality and test fields",
+                    "Monitoring or decoder limitations that do not expose relevant device diagnostics"
                 ],
                 "recommended_checks": [
-                    "Verify how quality value 0 is defined and populated by the originating endpoint",
-                    "Check device diagnostics and raw sensor status for the interval containing frame 11",
-                    "Correlate with redundant measurements or application alarms"
+                    "Confirm the endpoint roles and IEC104 configuration for stream_4",
+                    "Validate device-side quality/status diagnostics beyond the decoded quality field",
+                    "Check for corresponding IEC104 events, commands, or status changes outside frames 9-12",
+                    "Review a longer time window to determine whether the frame-11 transition is isolated or recurring"
                 ],
-                "title": "Measurement quality and cause fields remain unchanged"
-            },
-            {
-                "confidence": "high",
-                "description": "Frames 9–12 contain sequential transmitted APCI values tx 2, 3, 4, and 5, while rx remains 1. The supplied state series reports three observed tx changes and no rx changes, with no reordered events or retransmissions. This supports continuity of the observed protocol stream but does not validate the physical correctness of the measurement.",
-                "evidence_frames": [
-                    9,
-                    10,
-                    11,
-                    12
-                ],
-                "possible_explanations": [
-                    "The endpoint transmitted four consecutive information frames normally",
-                    "The capture may represent only a partial session and may not show all acknowledgements or traffic",
-                    "A correctly sequenced protocol stream can still carry erroneous, stale, or manipulated application data"
-                ],
-                "recommended_checks": [
-                    "Review the complete bidirectional IEC104 session, including acknowledgements and supervisory frames",
-                    "Confirm endpoint identity, connection state, and expected sequence-number behavior",
-                    "Compare the application values with source-device logs rather than relying only on APCI continuity"
-                ],
-                "title": "Consistent IEC104 sequencing in the observed exchange"
-            },
-            {
-                "confidence": "high",
-                "description": "Measurements were observed at relative times 1000, 2000, 3000, and 4000 ms, with zero interval standard deviation and no nonpositive time differences in the supplied statistics. The abrupt value transition therefore occurred between consecutive regularly spaced observations rather than during an apparent timing irregularity.",
-                "evidence_frames": [
-                    9,
-                    10,
-                    11,
-                    12
-                ],
-                "possible_explanations": [
-                    "The source uses a regular periodic reporting schedule",
-                    "A process change occurred between the regularly scheduled reports",
-                    "The capture or preprocessing may omit events outside the supplied frame range"
-                ],
-                "recommended_checks": [
-                    "Inspect packet timestamps and reporting configuration over a longer interval",
-                    "Determine whether the source reports cyclic values or event-triggered values on this connection",
-                    "Check for unsampled changes or related object updates between the supplied frames"
-                ],
-                "title": "Regular one-second observation interval"
+                "title": "Consistent protocol sequencing and quality indicators"
             }
         ],
-        "summary": "IEC104 measurements for IOA 1007 increased gradually from approximately 101.2 to 102.1, then changed abruptly to approximately 150.4 and 151.0 across frames 9–12. Protocol sequencing and quality-related fields remained consistent, and the available evidence does not establish whether the change reflects a physical process event, a measurement-source issue, or malicious activity."
+        "summary": "IEC104 measurements for IOA 1007 increased gradually in frames 9-10, then showed a sharp one-interval rise at frame 11 before remaining nearly stable at frame 12. The protocol counters and quality-related fields otherwise appear consistent across the observed range."
     }
 }

@@ -80,8 +80,10 @@ inferred from a model's name. Catalog refresh is user-triggered and gated by
 AI enablement. Provider documentation: https://opencode.ai/docs/go/ .
 This service targets coding-agent traffic; compatibility with semantic-analysis
 traffic and authenticated inference require a real provider test, not a claim
-based solely on documentation. This environment currently has no
-OPENCODE_API_KEY. Offline/mock tests cannot satisfy the live-provider gate.
+based solely on documentation. The live-provider gate was executed using a
+session-only key supplied through echo-disabled stdin; see VALIDATION.md. The
+key is not retained in the environment or application settings. Offline/mock
+tests are reported separately from that live acceptance run.
 
 Outbound summaries are constructed from a schema allowlist. Local endpoint,
 publisher and dataset identifiers are pseudonymized; untrusted packet strings,
