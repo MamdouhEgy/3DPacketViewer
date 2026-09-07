@@ -3,7 +3,7 @@
 Validated target source: Wireshark 4.7.4 development at `9fc76ca769c9226b3d484cc43e5b62289fab1da3`.
 Environment: Ubuntu 24.04.4 x86-64, Qt 6.4.2, GCC 13.3.0, CMake 3.28.3, Ninja 1.11.1. Linux is the executed platform. Windows and macOS are NOT TESTED for this extension.
 
-This revision's native UI-plugin mechanism is integrated through Wireshark's CMake tree. The repository is independent, with an idempotent source link and pinned-revision guard in `tools/integrate.py`. No Wireshark implementation file is patched or vendored. `semantic_analyzer` is a separate module target below `semantic/`, sharing upstream registration/install helpers. It links `sspa_extraction`, `sspa_ai_ui`, EPAN and uiqt_plugin. Native UI requires the exact compatible Wireshark ABI; a module compiled here must not be copied into Wireshark 4.2.2.
+This revision's native UI-plugin mechanism is integrated through Wireshark's CMake tree. The repository is independent, with an idempotent source link and pinned-revision guard in `tools/integrate.py`. No Wireshark implementation file is patched or vendored. `semantic_analyzer` is a separate module target below `semantic/`, sharing upstream registration/install helpers. It links `sspa_extraction`, `sspa_ai_ui`, EPAN and uiqt_plugin. Native UI requires the exact compatible Wireshark ABI; build and install the module with the pinned Wireshark 4.7.4 development revision.
 
 Follow the repository [Linux dependency and build instructions](../../docs/BUILD.md). Qt Network and Qt Test are supplied by Qt Base. Configure `BUILD_SEMANTIC_ANALYZER=ON` (default). The resulting module is `run/plugins/wireshark/4.7/ui/semantic_analyzer.so`; platform suffixes follow Wireshark. `cmake --install` uses the upstream versioned plugin location.
 

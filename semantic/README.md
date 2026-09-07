@@ -8,7 +8,7 @@ protocol state or deterministic findings.
 
 **Target:** Wireshark **4.7.4 development**, commit
 `9fc76ca769c9226b3d484cc43e5b62289fab1da3`. Validated on Ubuntu 24.04.4 with
-Qt 6.4.2 and GCC 13.3.0. This module does not load into Wireshark 4.2.2.
+Qt 6.4.2 and GCC 13.3.0. Build the module with this exact Wireshark revision.
 Native Windows/macOS runtime and field deployment are **NOT TESTED**.
 
 The analyzer is independent of 3DPacketViewer and shares its pinned native build.

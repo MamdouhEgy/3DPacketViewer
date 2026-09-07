@@ -39,8 +39,8 @@ attachment.
 | Integration | Source-integrated Qt UI plugins; modeless Wireshark-owned windows |
 | Other platforms | Native Windows and macOS runtime **NOT TESTED** |
 
-These modules are **not binaries for Wireshark 4.2.2**. Build and install them
-with the pinned Wireshark revision. The integration script checks the revision
+Build and install both modules with the pinned **Wireshark 4.7.4 development**
+revision. The integration script checks the revision
 and links this repository into the upstream build; it does not vendor Wireshark
 or patch its implementation files.
 

@@ -5,7 +5,6 @@ Investigation date: 2026-09-07. This is an investigation record, not a completed
 Pinned upstream: Wireshark development 4.7.4, commit
 `9fc76ca769c9226b3d484cc43e5b62289fab1da3`, fetched from
 https://gitlab.com/wireshark/wireshark (HEAD at investigation time).
-The installed distribution version 4.2.2 is not the target.
 
 Environment: Ubuntu 24.04.4 LTS, x86_64, Linux 7.0.0-31-generic;
 GCC/G++ 13.3.0; CMake 3.28.3; Ninja 1.11.1; Qt 6.4.2.

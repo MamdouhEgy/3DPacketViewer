@@ -1,6 +1,6 @@
 # Remaining limitations
 
-- The native module targets the exact documented Wireshark 4.7.4 development revision. It does not load into Wireshark 4.2.2. Windows/macOS runtime, real-interface capture and field deployment are NOT TESTED.
+- The native module targets the exact documented Wireshark 4.7.4 development revision. Windows/macOS runtime, real-interface capture and field deployment are NOT TESTED.
 - Protocol modules implement the documented observation/correlation profiles, not every normative state, object variation or deployment profile. MMS association negotiation, complete DNP3 application/control/authentication behavior and SCL import remain outside this release. Missing capture evidence must not be interpreted as proof of a protocol fault or attack.
 - SV waveform values require the matching Wireshark decode preference/profile. No arbitrary `seqData` parser, physical scaling or engineering unit inference exists. Rate/modulus policy is currently analyzer-wide, not per stream. Sustained industrial SV throughput is NOT TESTED.
 - Full-tree mode increases dissection work while the viewer is open. State stops with a partial-results diagnostic at 200,000 events, 50,000 transactions or 50,000 findings. This is not an unbounded long-running collector. CLI Wireshark frame/dissection metadata also grows with capture size.

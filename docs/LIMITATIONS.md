@@ -1,7 +1,7 @@
 # Limitations
 
 - Validated against one pinned development revision, not a stable UI-plugin ABI.
-  Installed 4.2.x and arbitrary 4.6/4.7 binaries are not compatible targets.
+  Build and install against the documented Wireshark 4.7.4 development commit.
 - Native Linux/Qt 6.4.2 is the executed platform. Windows and macOS builds and
   GPU drivers are NOT TESTED here. Portable source and instructions are not
   evidence of those platforms working.
