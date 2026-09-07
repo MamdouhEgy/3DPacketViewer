@@ -1,0 +1,8 @@
+fixture,frame,protocol,field,expected_start,expected_length,extracted_start,extracted_length,data_source,result
+iec104_normal_temporal,6,IEC104,iec60870_asdu.typeid,60,1,60,1,0,PASS
+iec104_normal_temporal,6,IEC104,iec60870_asdu.causetx,62,1,62,1,0,PASS
+iec104_normal_temporal,6,IEC104,iec60870_asdu.addr,64,2,64,2,0,PASS
+iec104_normal_temporal,6,IEC104,iec60870_asdu.ioa,66,3,66,3,0,PASS
+iec104_normal_temporal,9,IEC104,iec60870_asdu.float,69,4,69,4,0,PASS
+modbus_write,4,MODBUS,mbtcp.trans_id,54,2,54,2,0,PASS
+modbus_write,4,MODBUS,modbus.func_code,61,1,61,1,0,PASS

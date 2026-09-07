@@ -48,3 +48,8 @@ if(PACKETVIEWER_GUI_TESTS AND TARGET packetviewer3d)
     target_compile_definitions(packetviewer3d PRIVATE PACKETVIEWER_GUI_TESTS)
     target_link_libraries(packetviewer3d Qt6::Test)
 endif()
+
+option(BUILD_SEMANTIC_ANALYZER "Build the independent Stateful Semantic Protocol Analyzer" ON)
+if(BUILD_SEMANTIC_ANALYZER)
+    add_subdirectory(semantic)
+endif()

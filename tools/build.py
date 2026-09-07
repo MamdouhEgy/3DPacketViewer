@@ -24,6 +24,6 @@ if not ws.exists():
 run('python3',ROOT/'tools/integrate.py',ws)
 options=['-DCUSTOM_PLUGIN_SRC_DIR=ui/3dpacketviewer','-DCMAKE_BUILD_TYPE='+('Debug' if a.debug or a.sanitizers else 'RelWithDebInfo'),'-DBUILD_stratoshark=OFF']
 if a.sanitizers:options+=['-DENABLE_ASAN=ON','-DENABLE_UBSAN=ON']
-if a.gui_tests:options+=['-DPACKETVIEWER_GUI_TESTS=ON']
+if a.gui_tests:options+=['-DPACKETVIEWER_GUI_TESTS=ON','-DSSPA_GUI_TESTS=ON']
 run('cmake','-S',ws,'-B',a.build.resolve(),'-G','Ninja',*options,*a.cmake_args)
 if not a.configure_only:run('cmake','--build',a.build.resolve(),'--parallel',a.jobs)

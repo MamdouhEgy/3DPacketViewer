@@ -1,0 +1,146 @@
+[
+  {
+    "pass": true,
+    "test": "native plugin loaded"
+  },
+  {
+    "pass": true,
+    "test": "AI off by default"
+  },
+  {
+    "pass": true,
+    "test": "open IEC104"
+  },
+  {
+    "pass": true,
+    "test": "capture-wide tap extracts all events"
+  },
+  {
+    "pass": true,
+    "test": "tap control correlation and 42 ms duration"
+  },
+  {
+    "pass": true,
+    "test": "tap float measurement and timestamp"
+  },
+  {
+    "pass": true,
+    "test": "packet selection synchronization"
+  },
+  {
+    "pass": true,
+    "test": "time window deterministic differences"
+  },
+  {
+    "pass": true,
+    "test": "sanitized context excludes endpoint addresses"
+  },
+  {
+    "pass": true,
+    "test": "offline analysis generated no requests"
+  },
+  {
+    "pass": true,
+    "test": "display filter preserves capture-wide state"
+  },
+  {
+    "pass": true,
+    "test": "multiple native rows map through active display filter"
+  },
+  {
+    "pass": true,
+    "test": "redissection deterministic"
+  },
+  {
+    "pass": true,
+    "test": "semantic evidence frame navigation"
+  },
+  {
+    "pass": true,
+    "test": "open goose_regression"
+  },
+  {
+    "pass": true,
+    "test": "semantic events goose_regression"
+  },
+  {
+    "pass": true,
+    "test": "open sv_gap"
+  },
+  {
+    "pass": true,
+    "test": "semantic events sv_gap"
+  },
+  {
+    "pass": true,
+    "test": "open modbus_write"
+  },
+  {
+    "pass": true,
+    "test": "semantic events modbus_write"
+  },
+  {
+    "pass": true,
+    "test": "open mms_identify"
+  },
+  {
+    "pass": true,
+    "test": "semantic events mms_identify"
+  },
+  {
+    "pass": true,
+    "test": "open dnp3_read"
+  },
+  {
+    "pass": true,
+    "test": "semantic events dnp3_read"
+  },
+  {
+    "pass": true,
+    "test": "open iec104_segmented"
+  },
+  {
+    "pass": true,
+    "test": "semantic events iec104_segmented"
+  },
+  {
+    "pass": true,
+    "test": "reassembly provenance completion frame"
+  },
+  {
+    "pass": true,
+    "test": "open iec104_retransmission"
+  },
+  {
+    "pass": true,
+    "test": "semantic events iec104_retransmission"
+  },
+  {
+    "pass": true,
+    "test": "open iec104_missing_termination"
+  },
+  {
+    "pass": true,
+    "test": "semantic events iec104_missing_termination"
+  },
+  {
+    "pass": true,
+    "test": "open iec104_boundary"
+  },
+  {
+    "pass": true,
+    "test": "semantic events iec104_boundary"
+  },
+  {
+    "pass": true,
+    "test": "capture close clears stale state"
+  },
+  {
+    "pass": true,
+    "test": "capture reopen"
+  },
+  {
+    "pass": true,
+    "test": "reopen state reconstructed"
+  }
+]

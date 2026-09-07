@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "enforce_control_sources": true,
+  "transaction_timeout_ms": 5000,
+  "sv_counter_modulus": 4000,
+  "assets": {
+    "192.0.2.1": {"role": "UNKNOWN", "control_source": false},
+    "192.0.2.2": {"role": "RTU", "common_addresses": [2], "ioas": [1007]}
+  }
+}

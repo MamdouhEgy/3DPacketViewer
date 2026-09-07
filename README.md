@@ -103,3 +103,7 @@ python3 tests/integration/validate.py --bin ../ws-build/run \
 [Limitations](docs/LIMITATIONS.md). GPL-2.0-or-later. All packet processing
 is local: no telemetry, remote renderer, network client, or external parser is
 part of the plugin.
+
+## Stateful Semantic Protocol Analyzer
+
+The repository now also contains an independent native extension for deterministic OT transactions and temporal semantic analysis, with optional reviewed AI summaries. See [semantic/README.md](semantic/README.md) for its workflow, build, privacy boundary and validation.

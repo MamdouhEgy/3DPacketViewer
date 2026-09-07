@@ -1,5 +1,9 @@
 # Changelog
 
+## Stateful Semantic Protocol Analyzer 0.1.0
+
+Add a separate native offline semantic analyzer with six protocol modules, transaction and event tables, explicit state transitions, provenance, asset policy, temporal contexts and deterministic comparisons. Add optional OpenCode Go discovery, API adapters, exact request preview, strict outbound allowlists and validated AI evidence. Include synthetic fixtures, privacy/network regressions and executed native/sanitizer/live-provider validation. See semantic/docs/VALIDATION.md for scope and results.
+
 ## 0.2.0
 
 Make the aligned byte-and-bit map the default. Add source-relative offset and

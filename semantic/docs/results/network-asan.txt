@@ -1,0 +1,19 @@
+********* Start testing of NetworkTests *********
+Config: Using QtTest library 6.4.2, Qt 6.4.2 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 13.2.0), ubuntu 24.04
+PASS   : NetworkTests::initTestCase()
+PASS   : NetworkTests::discovery()
+PASS   : NetworkTests::offAndCancel()
+PASS   : NetworkTests::errors(authentication)
+PASS   : NetworkTests::errors(rate-limit)
+PASS   : NetworkTests::errors(unavailable)
+PASS   : NetworkTests::errors(redirect)
+PASS   : NetworkTests::errors(invalid-json)
+PASS   : NetworkTests::errors(oversized)
+PASS   : NetworkTests::errors(timeout)
+PASS   : NetworkTests::errors(network)
+PASS   : NetworkTests::modelDisappears()
+PASS   : NetworkTests::malformedCatalog()
+PASS   : NetworkTests::secretEchoRejected()
+PASS   : NetworkTests::cleanupTestCase()
+Totals: 15 passed, 0 failed, 0 skipped, 0 blacklisted, 98ms
+********* Finished testing of NetworkTests *********

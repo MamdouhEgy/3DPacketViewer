@@ -32,6 +32,13 @@ jobs:
           mkdir -p "$RUNNER_TEMP/ws-config"
           xvfb-run -a env QT_QPA_PLATFORM=xcb LIBGL_ALWAYS_SOFTWARE=1 WIRESHARK_CONFIG_DIR="$RUNNER_TEMP/ws-config" PACKETVIEWER_TEST_DIR="$PWD/build-fixtures" timeout 90 "$RUNNER_TEMP/ws-build/run/wireshark"
           python3 tools/check_gui_results.py build-fixtures/gui-results.json
+      - name: Semantic core and privacy regression
+        run: |
+          "$RUNNER_TEMP/ws-build/run/semantic_core_tests"
+          "$RUNNER_TEMP/ws-build/run/semantic_network_tests"
+          python3 semantic/tools/make_fixtures.py
+          python3 semantic/tests/integration/validate.py --analyzer "$RUNNER_TEMP/ws-build/run/semantic_analyze" --tshark "$RUNNER_TEMP/ws-build/run/tshark" --fixtures build-semantic-fixtures --output build-semantic-validation
+          xvfb-run -a python3 semantic/tools/run_gui.py --wireshark "$RUNNER_TEMP/ws-build/run/wireshark" --fixtures build-semantic-fixtures --output build-semantic-gui
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -41,3 +48,5 @@ jobs:
             build-validation/ground-truth.md
             build-fixtures/gui-results.json
             build-fixtures/viewer.png
+            build-semantic-validation/results.json
+            build-semantic-fixtures/gui-results.json

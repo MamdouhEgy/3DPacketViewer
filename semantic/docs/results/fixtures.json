@@ -1,0 +1,586 @@
+[
+  {
+    "test": "dnp3_read capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "dnp3_read decoded events",
+    "passed": true
+  },
+  {
+    "test": "dnp3_read no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "dnp3_read every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "dnp3_read no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "goose_duplicate_publisher capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "goose_duplicate_publisher decoded events",
+    "passed": true
+  },
+  {
+    "test": "goose_duplicate_publisher no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "goose_duplicate_publisher every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "goose_duplicate_publisher no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "goose_normal capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "goose_normal decoded events",
+    "passed": true
+  },
+  {
+    "test": "goose_normal no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "goose_normal every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "goose_normal no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "goose_regression capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "goose_regression decoded events",
+    "passed": true
+  },
+  {
+    "test": "goose_regression no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "goose_regression every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "goose_regression no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_boundary capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_boundary decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_boundary no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_boundary every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_boundary no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_drift capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_drift decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_drift no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_drift every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_drift no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_confirmation capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_confirmation decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_confirmation no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_confirmation every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_confirmation no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_termination capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_termination decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_termination no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_termination every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_missing_termination no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_multi_pdu capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_multi_pdu decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_multi_pdu no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_multi_pdu every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_multi_pdu no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_retransmission capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_retransmission decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_retransmission no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_retransmission every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_retransmission no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_segmented capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_segmented decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_segmented no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_segmented every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_segmented no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_small_bias capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_small_bias decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_small_bias no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_small_bias every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_small_bias no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "iec104_wrap capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "iec104_wrap decoded events",
+    "passed": true
+  },
+  {
+    "test": "iec104_wrap no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "iec104_wrap every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "iec104_wrap no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "mms_identify capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "mms_identify decoded events",
+    "passed": true
+  },
+  {
+    "test": "mms_identify no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "mms_identify every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "mms_identify no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "modbus_read capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "modbus_read decoded events",
+    "passed": true
+  },
+  {
+    "test": "modbus_read no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "modbus_read every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "modbus_read no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "modbus_write capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "modbus_write decoded events",
+    "passed": true
+  },
+  {
+    "test": "modbus_write no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "modbus_write every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "modbus_write no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "sv_gap capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "sv_gap decoded events",
+    "passed": true
+  },
+  {
+    "test": "sv_gap no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "sv_gap every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "sv_gap no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap capture analysis process",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap decoded events",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap no malformed decoded fixture",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap every semantic value has field provenance",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap no raw packet data in outbound context",
+    "passed": true
+  },
+  {
+    "test": "IEC104 control frames / latency",
+    "passed": true
+  },
+  {
+    "test": "IEC104 normal has no findings",
+    "passed": true
+  },
+  {
+    "test": "four IEC104 measurement values",
+    "passed": true
+  },
+  {
+    "test": "IEC104 capture end is boundary limited",
+    "passed": true
+  },
+  {
+    "test": "IEC104 missing confirmation",
+    "passed": true
+  },
+  {
+    "test": "IEC104 missing termination deadline",
+    "passed": true
+  },
+  {
+    "test": "IEC104 sequence discontinuity",
+    "passed": true
+  },
+  {
+    "test": "IEC104 modulo wrap",
+    "passed": true
+  },
+  {
+    "test": "iec104_multi_pdu preserves two IOAs and values",
+    "passed": true
+  },
+  {
+    "test": "iec104_sequence_objects preserves two IOAs and values",
+    "passed": true
+  },
+  {
+    "test": "Wireshark-generated second IOA retains provenance",
+    "passed": true
+  },
+  {
+    "test": "IEC104 segmentation",
+    "passed": true
+  },
+  {
+    "test": "IEC104 retransmission not duplicated",
+    "passed": true
+  },
+  {
+    "test": "GOOSE normal progression",
+    "passed": true
+  },
+  {
+    "test": "GOOSE regression",
+    "passed": true
+  },
+  {
+    "test": "GOOSE publisher identity change",
+    "passed": true
+  },
+  {
+    "test": "SV missing sample counter",
+    "passed": true
+  },
+  {
+    "test": "mms_identify request-response correlation",
+    "passed": true
+  },
+  {
+    "test": "modbus_write request-response correlation",
+    "passed": true
+  },
+  {
+    "test": "modbus_read request-response correlation",
+    "passed": true
+  },
+  {
+    "test": "dnp3_read request-response correlation",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap policy process",
+    "passed": true
+  },
+  {
+    "test": "sv_wrap configured policy",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal policy process",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal configured policy",
+    "passed": true
+  },
+  {
+    "test": "modbus_write policy process",
+    "passed": true
+  },
+  {
+    "test": "modbus_write configured policy",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.typeid independent wire location",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.typeid tshark agreement",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.causetx independent wire location",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.causetx tshark agreement",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.addr independent wire location",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.addr tshark agreement",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.ioa independent wire location",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:6:iec60870_asdu.ioa tshark agreement",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:9:iec60870_asdu.float independent wire location",
+    "passed": true
+  },
+  {
+    "test": "iec104_normal_temporal:9:iec60870_asdu.float tshark agreement",
+    "passed": true
+  },
+  {
+    "test": "modbus_write:4:mbtcp.trans_id independent wire location",
+    "passed": true
+  },
+  {
+    "test": "modbus_write:4:mbtcp.trans_id tshark agreement",
+    "passed": true
+  },
+  {
+    "test": "modbus_write:4:modbus.func_code independent wire location",
+    "passed": true
+  },
+  {
+    "test": "modbus_write:4:modbus.func_code tshark agreement",
+    "passed": true
+  }
+]
