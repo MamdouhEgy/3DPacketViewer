@@ -125,7 +125,8 @@ QJsonObject Sanitizer::encode(const Context& c)
         "sample_sync", "sample_rate", "sample_mode", "invoke_id", "service", "transaction_id", "unit_id",
         "function", "exception", "exception_code", "request_frame", "register", "quantity", "app_sequence",
         "unsolicited", "confirm_required", "first_fragment", "final_fragment", "indications", "object_group",
-        "object_index", "control", "write_operation", "vlan", "vlan_priority" };
+        "object_index", "control", "write_operation", "vlan", "vlan_priority", "routed",
+        "transport_simulation" };
     for (const auto& e : c.events) {
         if (!protocols.contains(e.protocol) || !types.contains(e.type))
             continue;

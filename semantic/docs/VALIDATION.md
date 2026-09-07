@@ -1,5 +1,7 @@
 # Executed validation — 2026-09-07
 
+Latest follow-up: the R-GOOSE correction below passed 39 core tests, 15 network tests, 200 integration assertions and 40 native GUI checks. The original delivery table is retained as historical evidence.
+
 Target: Wireshark 4.7.4 development, `9fc76ca769c9226b3d484cc43e5b62289fab1da3`; Ubuntu 24.04.4 x86-64, Qt 6.4.2, GCC 13.3.0, CMake 3.28.3, Ninja 1.11.1. Results below describe executed tests, not general certification.
 
 | Gate | Executed result |
@@ -72,3 +74,11 @@ The normal final live run exited with code 0. An earlier normal launch was termi
 GitHub Actions full native build and GUI validation passed for implementation commit `ac41a2a9448db58de60bceb61fc877b428db1753` ([run 34153308989](https://github.com/MamdouhEgy/3DPacketViewer/actions/runs/34153308989)). Final state-statistics changes were additionally rebuilt and tested locally as recorded above; subsequent CI status must be read from the repository rather than inferred from this earlier run.
 
 Resolution: the unmodified upstream libproxy 0.5.12 release, commit `99da01926b1b1e303a4d2331bbd74bed424863e7`, was built with all applicable default proxy/PAC backends and passed its six upstream test suites. It contains the upstream [list/sysconfig deallocation fixes](https://github.com/libproxy/libproxy/pull/312). The standalone diagnostic then exited with code 0 and no sanitizer report. The complete live Wireshark AI test with this library passed all 43 checks and exited with code 0 under ASan/UBSan. This dependency is installed only in the user bundle, and its launcher resolves it through that bundle's library directory. System packages and proxy configuration are unchanged. LGPL license and source revision are installed alongside the dependency.
+
+## R-GOOSE correction — executed follow-up
+
+The original extractor recognized the Ethernet `goose` tree but not the routed `r-goose` tree, causing captures containing decoded R-GOOSE to show zero semantic events. The correction recognizes the actual routed tree, obtains APPID from `rgoose.appid`, scopes each decoded GOOSE PDU separately, preserves IP publisher identity, and separates routed/Ethernet publisher state. No packet parser was added.
+
+Executed: 39 core tests, 15 network tests, 200 fixture/integration assertions over 24 synthetic captures, and 40 native GUI checks passed. Core, fixture and GUI tests also passed under ASan/UBSan. The GUI process exited with code 0. New fixtures include normal routed GOOSE, stNum regression and two independent APPIDs in one datagram. The constructed first APPID is independently located at byte 75 with width 2; tshark separately confirms its value. Tshark's hexadecimal APPID presentation is handled explicitly by the integration oracle.
+
+An additional user-supplied capture was checked locally. Its contents, identities, derived counts and local report were not committed or sent to an AI service. This check is not a security verdict or cryptographic verification. Remote AI was not invoked for this follow-up; the new allowlisted routed flag was covered by local privacy regression. Artifacts are the `results/rgoose-*` files.

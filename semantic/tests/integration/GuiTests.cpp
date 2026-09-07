@@ -103,8 +103,9 @@ void runSemanticGuiTests(sspa::Viewer* v, QWidget* host)
         },
         &navigated);
     check("semantic evidence frame navigation", navigated);
-    for (const auto& name : { "goose_regression", "sv_gap", "modbus_write", "mms_identify", "dnp3_read",
-             "iec104_segmented", "iec104_retransmission", "iec104_missing_termination", "iec104_boundary" }) {
+    for (const auto& name : { "goose_regression", "rgoose_regression", "rgoose_multi_pdu", "sv_gap",
+             "modbus_write", "mms_identify", "dnp3_read", "iec104_segmented", "iec104_retransmission",
+             "iec104_missing_termination", "iec104_boundary" }) {
         check(QString("open ") + name, open(name));
         check(QString("semantic events ") + name, !engine.events.empty());
         if (QString(name) == "iec104_segmented") {

@@ -1,5 +1,9 @@
 # Changelog
 
+## Stateful Semantic Protocol Analyzer — R-GOOSE correction
+
+Recognize Wireshark’s routed GOOSE tree, preserve per-PDU APPIDs, and track routed publishers by IP identity separately from Ethernet GOOSE. Add synthetic routed traffic and regression coverage. No R-GOOSE authentication claim is made.
+
 ## Stateful Semantic Protocol Analyzer 0.1.0
 
 Add a separate native offline semantic analyzer with six protocol modules, transaction and event tables, explicit state transitions, provenance, asset policy, temporal contexts and deterministic comparisons. Add optional OpenCode Go discovery, API adapters, exact request preview, strict outbound allowlists and validated AI evidence. Include synthetic fixtures, privacy/network regressions and executed native/sanitizer/live-provider validation. See semantic/docs/VALIDATION.md for scope and results.

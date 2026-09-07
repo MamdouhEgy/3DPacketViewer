@@ -368,6 +368,25 @@ private slots:
         QVERIFY(std::any_of(
             e.findings.begin(), e.findings.end(), [](auto f) { return f.rule == "GOOSE_STNUM_REGRESSION"; }));
     }
+    void gooseTransportIsolation()
+    {
+        Engine engine;
+        for (int i = 1; i <= 2; ++i) {
+            auto e = event("GOOSE", "PUBLISH", i, i * 100);
+            value(e, "st_num", i == 1 ? 54 : 17, "goose.stNum");
+            value(e, "sq_num", 0, "goose.sqNum");
+            value(e, "app_id", 4096, "rgoose.appid");
+            value(e, "control_block", "gcb", "goose.gocbRef");
+            value(e, "routed", i == 2, "r-goose");
+            engine.ingest(e);
+        }
+        QVERIFY(engine.findings.empty());
+        QCOMPARE(engine.transactions.size(), 2);
+        Sanitizer sanitizer;
+        const auto context = sanitizer.build(buildContext(engine, {})).json;
+        QVERIFY(!QJsonDocument(context).toJson().contains("192.0.2."));
+        QVERIFY(QJsonDocument(context).toJson().contains("routed"));
+    }
     void svWrap()
     {
         Engine e;

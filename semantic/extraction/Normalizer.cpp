@@ -10,6 +10,8 @@ const QMap<QString, QString>& semanticFields()
         { "exported_pdu.ipv6_src", "source_ip" }, { "exported_pdu.ipv6_dst", "destination_ip" },
         { "ip.src", "source_ip" }, { "ip.dst", "destination_ip" }, { "ipv6.src", "source_ip" },
         { "ipv6.dst", "destination_ip" }, { "eth.src", "source_mac" }, { "eth.dst", "destination_mac" },
+        { "udp.srcport", "source_port" }, { "udp.dstport", "destination_port" }, { "r-goose", "routed" },
+        { "rgoose.appid", "app_id" }, { "rgoose.simulation", "transport_simulation" },
         { "tcp.srcport", "source_port" }, { "tcp.dstport", "destination_port" },
         { "tcp.stream", "tcp_stream" }, { "tcp.analysis.retransmission", "retransmission" },
         { "tcp.analysis.fast_retransmission", "retransmission" },
@@ -70,6 +72,35 @@ static void derived(Event& e, QString key, QVariant value, const QString& from)
 {
     e.values[key] = { value, e.values.value(from).evidence };
 }
+// R-GOOSE contains decoded GOOSE PDUs inside the routed protocol tree. The
+// APPID is a preceding sibling, not a descendant of the BER PDU. Associate
+// each PDU with its own preceding APPID; never flatten multiple PDUs together.
+static QVector<DecodedGroup> gooseGroups(const QVector<DecodedGroup>& groups)
+{
+    QVector<DecodedGroup> result;
+    for (const auto& group : groups) {
+        if (group.protocol != "r-goose") {
+            result.push_back(group);
+            continue;
+        }
+        QMap<QString, DecodedField> header;
+        for (const auto& anchor : group.fields) {
+            if (anchor.name == "r-goose" || anchor.name == "rgoose.appid"
+                || anchor.name == "rgoose.simulation")
+                header[anchor.name] = anchor;
+            if (anchor.name != "goose.gocbRef")
+                continue;
+            DecodedGroup pdu { "goose", anchor.parent, {} };
+            for (const auto& field : header)
+                pdu.fields.push_back(field);
+            for (const auto& field : group.fields)
+                if (field.parent == anchor.parent || field.ancestors.contains(anchor.parent))
+                    pdu.fields.push_back(field);
+            result.push_back(std::move(pdu));
+        }
+    }
+    return result;
+}
 QVector<Event> normalize(const DecodedPacket& packet)
 {
     QVector<Event> events;
@@ -93,7 +124,7 @@ QVector<Event> normalize(const DecodedPacket& packet)
         e.id = QString("%1:%2:%3").arg(e.protocol).arg(e.frame).arg(e.ordinal);
         events.push_back(std::move(e));
     };
-    for (const auto& g : packet.groups) {
+    for (const auto& g : gooseGroups(packet.groups)) {
         Event e = base;
         copyFields(e, g.fields);
         if (g.protocol == "iec60870_104") {
@@ -152,12 +183,12 @@ QVector<Event> normalize(const DecodedPacket& packet)
                           provenance };
             e.values.remove("dataset_value");
             append(e);
-            int index = 0;
+            int memberIndex = 0;
             for (const auto& f : g.fields)
                 if (semanticFields().value(f.name) == "dataset_value") {
                     Event v = e;
                     v.type = "DATASET_VALUE";
-                    v.object = e.object + ":" + QString::number(index++);
+                    v.object = e.object + ":" + QString::number(memberIndex++);
                     v.values["value"] = f.value;
                     derived(v, "measurement_kind", f.name, "value");
                     append(v);
@@ -180,13 +211,13 @@ QVector<Event> normalize(const DecodedPacket& packet)
                     sample.publisher = sample.text("sv_id");
                     sample.object = sample.publisher;
                     append(sample);
-                    int index = 0;
+                    int memberIndex = 0;
                     for (const auto& f : g.fields)
                         if (semanticFields().value(f.name) == "value"
                             && (f.parent == anchor.parent || f.ancestors.contains(anchor.parent))) {
                             Event v = sample;
                             v.type = "MEASUREMENT";
-                            v.object = sample.object + ":" + QString::number(index++);
+                            v.object = sample.object + ":" + QString::number(memberIndex++);
                             v.values["value"] = f.value;
                             derived(v, "measurement_kind", f.name, "value");
                             for (const auto& q : g.fields)

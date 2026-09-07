@@ -27,6 +27,16 @@ for fixture in ['iec104_multi_pdu','iec104_sequence_objects']:
 check('Wireshark-generated second IOA retains provenance',any(v['generated'] for e in reports['iec104_sequence_objects']['events'] if e.get('values',{}).get('ioa',{}).get('value')==1008 for v in e['values']['ioa']['provenance']))
 check('IEC104 segmentation','COMMAND_TERMINATED' in [t['state'] for t in reports['iec104_segmented']['transactions']]);check('IEC104 retransmission not duplicated',len(reports['iec104_retransmission']['transactions'])==1)
 check('GOOSE normal progression',not rules('goose_normal'));check('GOOSE regression','GOOSE_STNUM_REGRESSION' in rules('goose_regression'));check('GOOSE publisher identity change','GOOSE_PUBLISHER_IDENTITY_CHANGE' in rules('goose_duplicate_publisher'));check('SV missing sample counter','SV_SAMPLE_COUNTER_DISCONTINUITY' in rules('sv_gap'))
+for name in ['rgoose_normal','rgoose_regression','rgoose_multi_pdu']:
+    pubs=[e for e in reports[name]['events'] if e['event_type']=='PUBLISH']
+    check(name+' routed publication classification',bool(pubs) and all(e['values']['routed']['value'] is True for e in pubs))
+    check(name+' IP publisher identity',all(e['source']=='192.0.2.1' and e['destination']=='232.0.0.1' for e in pubs))
+    check(name+' routed APPID field provenance',all(e['values']['app_id']['provenance'][0]['field']=='rgoose.appid' for e in pubs))
+check('R-GOOSE normal state progression',not rules('rgoose_normal'))
+check('R-GOOSE regression finding','GOOSE_STNUM_REGRESSION' in rules('rgoose_regression'))
+pubs=[e for e in reports['rgoose_multi_pdu']['events'] if e['event_type']=='PUBLISH']
+check('R-GOOSE multiple PDUs keep independent APPIDs and counters',[(e['values']['app_id']['value'],e['values']['st_num']['value'],e['values']['sq_num']['value']) for e in pubs]==[(4096,42,0),(8192,17,3)])
+check('R-GOOSE multiple PDUs do not create false regressions',not rules('rgoose_multi_pdu'))
 for name in ['mms_identify','modbus_write','modbus_read','dnp3_read']:check(name+' request-response correlation',len(reports[name]['transactions'])==1 and reports[name]['transactions'][0]['completion']=='COMPLETE')
 for name in ['sv_wrap','iec104_normal_temporal','modbus_write']:
     dest=a.output/(name+'-policy.json');r=subprocess.run([str(a.analyzer),str(a.fixtures/(name+'.pcap')),str(dest),str(ROOT/'semantic/tests/fixtures/policy.json')],capture_output=True);check(name+' policy process',r.returncode==0)
@@ -34,7 +44,7 @@ for name in ['sv_wrap','iec104_normal_temporal','modbus_write']:
     d=json.loads(dest.read_text());rs=[f['rule'] for f in d['findings']]
     check(name+' configured policy',not rs if name=='sv_wrap' else any('SOURCE' in x for x in rs))
 # Manually derived from Ethernet14 + IPv4 20 + TCP20 + APCI6 + ASDU fixed6.
-truth=[('iec104_normal_temporal',6,'IEC104','iec60870_asdu.typeid',60,1,45),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.causetx',62,1,6),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.addr',64,2,2),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.ioa',66,3,1007),('iec104_normal_temporal',9,'IEC104','iec60870_asdu.float',69,4,101.2),('modbus_write',4,'MODBUS','mbtcp.trans_id',54,2,4660),('modbus_write',4,'MODBUS','modbus.func_code',61,1,6)]
+truth=[('rgoose_normal',1,'GOOSE','rgoose.appid',75,2,4096),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.typeid',60,1,45),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.causetx',62,1,6),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.addr',64,2,2),('iec104_normal_temporal',6,'IEC104','iec60870_asdu.ioa',66,3,1007),('iec104_normal_temporal',9,'IEC104','iec60870_asdu.float',69,4,101.2),('modbus_write',4,'MODBUS','mbtcp.trans_id',54,2,4660),('modbus_write',4,'MODBUS','modbus.func_code',61,1,6)]
 rows=[]
 for fixture,frame,protocol,field,start,length,value in truth:
     found=[(e,v,ref) for e in reports[fixture]['events'] if e['frame']==frame for v in e['values'].values() for ref in v['provenance'] if ref['field']==field]
@@ -44,7 +54,10 @@ for fixture,frame,protocol,field,start,length,value in truth:
     check(f'{fixture}:{frame}:{field} independent wire location',ok)
     ref=found[0][2] if found else {};rows.append(dict(fixture=fixture,frame=frame,protocol=protocol,field=field,expected_start=start,expected_length=length,extracted_start=ref.get('byte_offset'),extracted_length=ref.get('byte_length'),data_source=ref.get('source'),result='PASS' if ok else 'FAIL'))
     r=subprocess.run([str(a.tshark),'-r',str(a.fixtures/(fixture+'.pcap')),'-Y',f'frame.number == {frame}','-T','fields','-e',field],capture_output=True,text=True)
-    try:oracle=float(r.stdout.strip().split(',')[0]);agree=math.isclose(oracle,value,abs_tol=.001)
+    try:
+        token=r.stdout.strip().split(',')[0]
+        oracle=int(token,16) if token.lower().startswith('0x') else float(token)
+        agree=math.isclose(oracle,value,abs_tol=.001)
     except ValueError:agree=False
     check(f'{fixture}:{frame}:{field} tshark agreement',r.returncode==0 and agree)
 with (a.output/'wire-validation.csv').open('w') as f:w=csv.DictWriter(f,fieldnames=rows[0].keys(),lineterminator="\n");w.writeheader();w.writerows(rows)

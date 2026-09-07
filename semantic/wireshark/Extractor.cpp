@@ -9,6 +9,7 @@
 #include <epan/ftypes/ftypes.h>
 #include <QSet>
 #include <cmath>
+#include <algorithm>
 namespace sspa
 {
 static QVariant scalar(field_info* f)
@@ -104,8 +105,8 @@ DecodedPacket Extractor::copy(epan_dissect_t* edt, packet_info* pinfo)
         p.modbusRequest = !src && dst;
         p.modbusResponse = src && !dst;
     }
-    const QSet<QString> roots { "iec60870_104", "iec60870_asdu", "goose", "sv", "mbtcp", "modbus", "mms",
-        "dnp3" };
+    const QSet<QString> roots { "iec60870_104", "iec60870_asdu", "goose", "r-goose", "sv", "mbtcp", "modbus",
+        "mms", "dnp3" };
     struct Work {
         proto_node* node;
         QVector<int> ancestors;
@@ -168,6 +169,12 @@ DecodedPacket Extractor::copy(epan_dissect_t* edt, packet_info* pinfo)
         if (item.node->first_child)
             work.push_back({ item.node->first_child, item.ancestors, item.group });
     }
+    for (const auto& group : p.groups)
+        if (group.protocol == "r-goose"
+            && std::none_of(group.fields.begin(), group.fields.end(),
+                [](const DecodedField& f) { return f.name == "goose.gocbRef"; }))
+            p.diagnostic = "R-GOOSE recognized, but no decoded GOOSE PDU is available from Wireshark; "
+                           "publisher analysis is unavailable for this content.";
     return p;
 }
 }

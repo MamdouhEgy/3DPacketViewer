@@ -19,7 +19,8 @@ public:
             return;
         }
         // confRev/dataset/MAC are attributes, not key components: changes must stay observable.
-        const QString logicalKey = e.text("app_id") + ":" + e.text("control_block") + ":" + e.destination;
+        const QString logicalKey = (e.flag("routed") ? QString("R-GOOSE:") : QString("Ethernet:"))
+            + e.text("app_id") + ":" + e.text("control_block") + ":" + e.destination;
         const QString key = logicalKey + ":" + e.source;
         auto report = [&](QString rule, QString expected, QString observed, QString why, quint32 prev) {
             engine.finding(e, rule, "PUBLISHER_OBSERVATION", expected, observed, why,
@@ -89,7 +90,7 @@ public:
         }
         if (!e.reordered)
             last[key] = e;
-        const int id = engine.begin(e, "GOOSE publication");
+        const int id = engine.begin(e, e.flag("routed") ? "R-GOOSE publication" : "GOOSE publication");
         engine.complete(id, e, "OBSERVED");
     }
 };

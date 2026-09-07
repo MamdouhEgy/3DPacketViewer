@@ -8,6 +8,8 @@ Open **Tools → Stateful Semantic Protocol Analyzer → Protocol Transactions**
 
 ![Native transaction viewer with synthetic IEC104 traffic](docs/results/viewer.png)
 
+Ethernet GOOSE and decoded R-GOOSE over CLTP/UDP are supported. Routed publications retain IP endpoint identity and are labeled **R-GOOSE publication**; this does not verify R-GOOSE cryptographic protection.
+
 The transaction table shows operation, endpoints/roles, object, observed state, completion and duration. Select a row for its contributing frames and explicit state transitions. Double-click an event to navigate to its Wireshark frame; **Show contributing packets** applies a frame-number filter. Semantic Timeline is an ordered event table, not a quantitative 3D display.
 
 Select **Analyze Semantic Differences (local)** for locally computed statistics and the sanitized representation. Contexts include findings, multiple transactions, selected packets/events, conversations, publishers, protocols, devices, time windows, ranges and capture summaries. Comparison modes accept another range or an exact local entity ID. Numeric comparisons align only identical measurement identities; different devices/streams are summarized independently rather than silently equated.

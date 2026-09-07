@@ -20,6 +20,17 @@ def iec(cot=6,tx=0,rx=0,value=1,ioa=1007,typ=45):
 def goose(st,sq,mac='020000000001',conf=1):
     tlv=base.tlv;body=tlv(0x61,b''.join([tlv(0x80,b'SYNTHETIC/LLN0$GO$gcb'),tlv(0x81,b'\x03\xe8'),tlv(0x82,b'SYNTHETIC/dataset'),tlv(0x83,b'go-test'),tlv(0x84,b'\0'*8),tlv(0x85,st.to_bytes(4,'big')),tlv(0x86,sq.to_bytes(4,'big')),tlv(0x87,b'\0'),tlv(0x88,bytes([conf])),tlv(0x89,b'\0'),tlv(0x8a,b'\1'),tlv(0xab,tlv(0x83,b'\1'))]))
     return bytes.fromhex('010ccd010001'+mac+'88b8')+struct.pack('!HHHH',0x1000,len(body)+8,0,0)+body
+def rgoose(pdus,spdu=1):
+    # Synthetic R-GOOSE over CLTP/UDP, following the pinned dissector's decoded
+    # framing. This is not an authentication/conformance test or a packet parser.
+    payload=b''.join(struct.pack('!BBHH',0x81,0,appid,len(body))+body for appid,body in pdus)
+    session=bytes.fromhex('a1178015')+struct.pack('!IIH',len(payload)+21,spdu,1)+b'\0'*11
+    data=b'\x01\x40'+session+struct.pack('!I',len(payload))+payload
+    src=bytes.fromhex('c0000201');dst=bytes.fromhex('e8000001')
+    udp=struct.pack('!HHHH',40000,102,8+len(data),0)+data
+    ip=struct.pack('!BBHHHBBH',0x45,0,20+len(udp),spdu,0x4000,64,17,0)+src+dst
+    ip=ip[:10]+struct.pack('!H',base.checksum(ip))+ip[12:]
+    return bytes.fromhex('01005e0000010200000000010800')+ip+udp
 def sv(count,conf=1):
     tlv=base.tlv;asdu=tlv(0x80,b'SYNTHETIC-MU')+tlv(0x82,count.to_bytes(2,'big'))+tlv(0x83,conf.to_bytes(4,'big'))+tlv(0x85,b'\2')+tlv(0x87,struct.pack('!iI',2312,0))
     body=tlv(0x60,tlv(0x80,b'\1')+tlv(0xa2,tlv(0x30,asdu)))
@@ -60,6 +71,9 @@ def fixtures():
         transport=b'\xc0';data=transport+app;h=bytes.fromhex('0564')+bytes([5+len(data),0x44 if reverse else 0xc4])+struct.pack('<HH',1024 if reverse else 1,1 if reverse else 1024)
         return h+base.dnp_crc(h)+data+base.dnp_crc(data)
     c=Conversation(20000);c.handshake();c.add(dnp(bytes.fromhex('c0013c0206')),ms=100);c.add(dnp(bytes.fromhex('c0810000'),True),True,120);add('dnp3_read',c.frames)
+    add('rgoose_normal',[(0,rgoose([(0x1000,goose(42,0)[22:])])),(100,rgoose([(0x1000,goose(42,1)[22:])],2)),(200,rgoose([(0x1000,goose(43,0)[22:])],3))],note='Synthetic unprotected CLTP/UDP routed GOOSE; publisher semantics only, no cryptographic verification.')
+    add('rgoose_regression',[(0,rgoose([(0x1000,goose(54,0)[22:])])),(100,rgoose([(0x1000,goose(17,0)[22:])],2))])
+    add('rgoose_multi_pdu',[(0,rgoose([(0x1000,goose(42,0)[22:]),(0x2000,goose(17,3)[22:])]))],note='Two independent APPIDs in one datagram; no flattening or cross-publisher correlation.')
     return all
 def main():
     p=argparse.ArgumentParser();p.add_argument('--output',type=pathlib.Path,default=ROOT/'build-semantic-fixtures');p.add_argument('--write-source',action='store_true');a=p.parse_args();items=fixtures();source=ROOT/'semantic/tests/fixtures/packets.json'
