@@ -1,0 +1,14 @@
+/build*/
+/.cache/
+/.local-deps/
+/.agents/
+/.codex/
+*.pcap
+*.pcapng
+*.so
+*.dll
+*.dylib
+*.o
+*.pyc
+__pycache__/
+CMakeUserPresets.json
