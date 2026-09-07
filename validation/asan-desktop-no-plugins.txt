@@ -1,0 +1,134 @@
+
+=================================================================
+==83247==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 136 byte(s) in 1 object(s) allocated from:
+    #0 0x7c6c09cfe548 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:95
+    #1 0x7c6c09acc4d8  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5c4d8) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #2 0x7c6c09b0275e  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x9275e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #3 0x7c6c09acfd34  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5fd34) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #4 0x7c6c09ad05c9 in QDBusMetaObject::createMetaObject(QString const&, QString const&, QHash<QString, QDBusMetaObject*>&, QDBusError&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x605c9) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #5 0x7c6c09ac649e in QDBusInterface::QDBusInterface(QString const&, QString const&, QString const&, QDBusConnection const&, QObject*) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5649e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #6 0x60a4d101b06f in readViaPortal /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:76
+    #7 0x60a4d1020f1f in readCurrent /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:205
+    #8 0x60a4d1025437 in SystemThemeDetector::Impl::Impl(SystemThemeDetector*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:303
+    #9 0x60a4d1021188 in SystemThemeDetector::SystemThemeDetector(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:335
+    #10 0x60a4d0f72e39 in ThemeManager::ThemeManager(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:109
+    #11 0x60a4d0f76ce1 in ThemeManager::instance() /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:223
+    #12 0x60a4d0f77463 in ThemeManager::init(QString const&) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:262
+    #13 0x60a4cf9ec7c5 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:454
+    #14 0x60a4d046b73f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #15 0x60a4cfaaec94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #16 0x7c6bdf22a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #17 0x7c6bdf22a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #18 0x60a4ce880574 in _start (/tmp/3dpv-asan/run/wireshark+0x68e8574) (BuildId: cfe62fce39a069a2338fb01890ca1101d73dfd9b)
+
+Direct leak of 136 byte(s) in 1 object(s) allocated from:
+    #0 0x7c6c09cfe548 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:95
+    #1 0x7c6c09acc4d8  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5c4d8) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #2 0x7c6c09b0275e  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x9275e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #3 0x7c6c09acfbb0  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5fbb0) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #4 0x7c6c09ad05c9 in QDBusMetaObject::createMetaObject(QString const&, QString const&, QHash<QString, QDBusMetaObject*>&, QDBusError&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x605c9) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #5 0x7c6c09ac649e in QDBusInterface::QDBusInterface(QString const&, QString const&, QString const&, QDBusConnection const&, QObject*) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5649e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #6 0x60a4d101b06f in readViaPortal /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:76
+    #7 0x60a4d1020f1f in readCurrent /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:205
+    #8 0x60a4d1025437 in SystemThemeDetector::Impl::Impl(SystemThemeDetector*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:303
+    #9 0x60a4d1021188 in SystemThemeDetector::SystemThemeDetector(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:335
+    #10 0x60a4d0f72e39 in ThemeManager::ThemeManager(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:109
+    #11 0x60a4d0f76ce1 in ThemeManager::instance() /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:223
+    #12 0x60a4d0f77463 in ThemeManager::init(QString const&) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:262
+    #13 0x60a4cf9ec7c5 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:454
+    #14 0x60a4d046b73f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #15 0x60a4cfaaec94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #16 0x7c6bdf22a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #17 0x7c6bdf22a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #18 0x60a4ce880574 in _start (/tmp/3dpv-asan/run/wireshark+0x68e8574) (BuildId: cfe62fce39a069a2338fb01890ca1101d73dfd9b)
+
+Direct leak of 136 byte(s) in 1 object(s) allocated from:
+    #0 0x7c6c09cfe548 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:95
+    #1 0x7c6c09acc4d8  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5c4d8) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #2 0x7c6c09b0275e  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x9275e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #3 0x7c6c09ac905d  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5905d) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #4 0x7c6c09ad05c1 in QDBusMetaObject::createMetaObject(QString const&, QString const&, QHash<QString, QDBusMetaObject*>&, QDBusError&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x605c1) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #5 0x7c6c09ac649e in QDBusInterface::QDBusInterface(QString const&, QString const&, QString const&, QDBusConnection const&, QObject*) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5649e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #6 0x60a4d101b06f in readViaPortal /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:76
+    #7 0x60a4d1020f1f in readCurrent /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:205
+    #8 0x60a4d1025437 in SystemThemeDetector::Impl::Impl(SystemThemeDetector*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:303
+    #9 0x60a4d1021188 in SystemThemeDetector::SystemThemeDetector(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:335
+    #10 0x60a4d0f72e39 in ThemeManager::ThemeManager(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:109
+    #11 0x60a4d0f76ce1 in ThemeManager::instance() /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:223
+    #12 0x60a4d0f77463 in ThemeManager::init(QString const&) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:262
+    #13 0x60a4cf9ec7c5 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:454
+    #14 0x60a4d046b73f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #15 0x60a4cfaaec94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #16 0x7c6bdf22a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #17 0x7c6bdf22a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #18 0x60a4ce880574 in _start (/tmp/3dpv-asan/run/wireshark+0x68e8574) (BuildId: cfe62fce39a069a2338fb01890ca1101d73dfd9b)
+
+Indirect leak of 53 byte(s) in 1 object(s) allocated from:
+    #0 0x7c6c09cfd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x7c6c0861c86c in QArrayData::allocate(QArrayData**, long long, long long, long long, QArrayData::AllocationOption) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x21c86c) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #2 0x7c6c085d29d3 in QByteArray::QByteArray(long long, Qt::Initialization) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x1d29d3) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #3 0x7c6c09b02677  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x92677) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #4 0x7c6c09acfd34  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5fd34) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #5 0x7c6c09ad05c9 in QDBusMetaObject::createMetaObject(QString const&, QString const&, QHash<QString, QDBusMetaObject*>&, QDBusError&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x605c9) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #6 0x7c6c09ac649e in QDBusInterface::QDBusInterface(QString const&, QString const&, QString const&, QDBusConnection const&, QObject*) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5649e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #7 0x60a4d101b06f in readViaPortal /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:76
+    #8 0x60a4d1020f1f in readCurrent /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:205
+    #9 0x60a4d1025437 in SystemThemeDetector::Impl::Impl(SystemThemeDetector*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:303
+    #10 0x60a4d1021188 in SystemThemeDetector::SystemThemeDetector(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:335
+    #11 0x60a4d0f72e39 in ThemeManager::ThemeManager(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:109
+    #12 0x60a4d0f76ce1 in ThemeManager::instance() /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:223
+    #13 0x60a4d0f77463 in ThemeManager::init(QString const&) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:262
+    #14 0x60a4cf9ec7c5 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:454
+    #15 0x60a4d046b73f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #16 0x60a4cfaaec94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #17 0x7c6bdf22a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #18 0x7c6bdf22a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #19 0x60a4ce880574 in _start (/tmp/3dpv-asan/run/wireshark+0x68e8574) (BuildId: cfe62fce39a069a2338fb01890ca1101d73dfd9b)
+
+Indirect leak of 47 byte(s) in 1 object(s) allocated from:
+    #0 0x7c6c09cfd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x7c6c0861c86c in QArrayData::allocate(QArrayData**, long long, long long, long long, QArrayData::AllocationOption) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x21c86c) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #2 0x7c6c085d29d3 in QByteArray::QByteArray(long long, Qt::Initialization) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x1d29d3) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #3 0x7c6c09b02677  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x92677) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #4 0x7c6c09acfbb0  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5fbb0) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #5 0x7c6c09ad05c9 in QDBusMetaObject::createMetaObject(QString const&, QString const&, QHash<QString, QDBusMetaObject*>&, QDBusError&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x605c9) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #6 0x7c6c09ac649e in QDBusInterface::QDBusInterface(QString const&, QString const&, QString const&, QDBusConnection const&, QObject*) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5649e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #7 0x60a4d101b06f in readViaPortal /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:76
+    #8 0x60a4d1020f1f in readCurrent /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:205
+    #9 0x60a4d1025437 in SystemThemeDetector::Impl::Impl(SystemThemeDetector*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:303
+    #10 0x60a4d1021188 in SystemThemeDetector::SystemThemeDetector(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:335
+    #11 0x60a4d0f72e39 in ThemeManager::ThemeManager(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:109
+    #12 0x60a4d0f76ce1 in ThemeManager::instance() /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:223
+    #13 0x60a4d0f77463 in ThemeManager::init(QString const&) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:262
+    #14 0x60a4cf9ec7c5 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:454
+    #15 0x60a4d046b73f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #16 0x60a4cfaaec94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #17 0x7c6bdf22a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #18 0x7c6bdf22a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #19 0x60a4ce880574 in _start (/tmp/3dpv-asan/run/wireshark+0x68e8574) (BuildId: cfe62fce39a069a2338fb01890ca1101d73dfd9b)
+
+Indirect leak of 45 byte(s) in 1 object(s) allocated from:
+    #0 0x7c6c09cfd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x7c6c0861c86c in QArrayData::allocate(QArrayData**, long long, long long, long long, QArrayData::AllocationOption) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x21c86c) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #2 0x7c6c085d29d3 in QByteArray::QByteArray(long long, Qt::Initialization) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x1d29d3) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #3 0x7c6c09b02677  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x92677) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #4 0x7c6c09ac905d  (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5905d) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #5 0x7c6c09ad05c1 in QDBusMetaObject::createMetaObject(QString const&, QString const&, QHash<QString, QDBusMetaObject*>&, QDBusError&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x605c1) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #6 0x7c6c09ac649e in QDBusInterface::QDBusInterface(QString const&, QString const&, QString const&, QDBusConnection const&, QObject*) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6DBus.so.6+0x5649e) (BuildId: be3940700eb915407d223d638e811a815f50efc6)
+    #7 0x60a4d101b06f in readViaPortal /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:76
+    #8 0x60a4d1020f1f in readCurrent /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:205
+    #9 0x60a4d1025437 in SystemThemeDetector::Impl::Impl(SystemThemeDetector*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:303
+    #10 0x60a4d1021188 in SystemThemeDetector::SystemThemeDetector(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/themes/system_theme_detector_unix.cpp:335
+    #11 0x60a4d0f72e39 in ThemeManager::ThemeManager(QObject*) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:109
+    #12 0x60a4d0f76ce1 in ThemeManager::instance() /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:223
+    #13 0x60a4d0f77463 in ThemeManager::init(QString const&) /tmp/3dpv-wireshark/ui/qt/utils/theme_manager.cpp:262
+    #14 0x60a4cf9ec7c5 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:454
+    #15 0x60a4d046b73f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #16 0x60a4cfaaec94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #17 0x7c6bdf22a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+    #18 0x7c6bdf22a28a in __libc_start_main_impl ../csu/libc-start.c:360
+    #19 0x60a4ce880574 in _start (/tmp/3dpv-asan/run/wireshark+0x68e8574) (BuildId: cfe62fce39a069a2338fb01890ca1101d73dfd9b)
+
+SUMMARY: AddressSanitizer: 553 byte(s) leaked in 6 allocation(s).

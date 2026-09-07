@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /home/user/3DPacketViewer/build-core-clean
+Test project /home/user/3DPacketViewer/build-core-clean
+    Start 1: packetviewer_core
+1/1 Test #1: packetviewer_core ................   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.02 sec

@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-07",
+  "wireshark_version": "4.7.4",
+  "wireshark_commit": "9fc76ca769c9226b3d484cc43e5b62289fab1da3",
+  "qt_version": "6.4.2",
+  "compiler": "GCC 13.3.0",
+  "cmake": "3.28.3",
+  "ninja": "1.11.1",
+  "os": "Ubuntu 24.04.4 LTS x86_64, Linux 7.0.0-31-generic",
+  "unmodified_baseline_build": "PASS",
+  "unmodified_baseline_gui": "PASS; displayed version verified by window image",
+  "clean_integrated_configure": "PASS",
+  "clean_full_integrated_build": "PASS; exit 0",
+  "final_module_rebuild": "PASS; no project warnings",
+  "standalone_configure_build_ctest": "PASS",
+  "full_debug_asan_ubsan_build": "PASS",
+  "integration_script_idempotence": "PASS; two successive executions",
+  "windows": "NOT TESTED; no Windows toolchain/runtime",
+  "macos": "NOT TESTED; no macOS toolchain/runtime",
+  "desktop_leak_control": "553-byte QtDBus leak reproduced with plugins disabled; unsuppressed reports retained",
+  "isolated_sanitizer_gui": "PASS; leak detection enabled, no desktop DBus/ATK bridge; exit 0"
+}

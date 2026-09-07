@@ -1,0 +1,5 @@
+Frames: 23
+extraction_ms median 0.133 max 0.8 ms
+geometry_ms median 0.009 max 0.098 ms
+Fields: maximum 1080
+Tiles: maximum 1131

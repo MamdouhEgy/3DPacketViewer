@@ -1,0 +1,43 @@
+name: Native build and validation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build qt6-base-dev
+      - run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build build --parallel 2
+      - run: ctest --test-dir build --output-on-failure
+  wireshark:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Native dependencies
+        run: >-
+          sudo apt-get update && sudo apt-get install -y
+          ninja-build qt6-base-dev qt6-tools-dev qt6-tools-dev-tools qt6-svg-dev
+          libglib2.0-dev libgcrypt20-dev libc-ares-dev libpcap-dev libpcre2-dev
+          libxml2-dev libspeexdsp-dev flex bison xvfb libgl1-mesa-dri
+      - name: Build pinned Wireshark and plugin
+        run: python3 tools/build.py --wireshark "$RUNNER_TEMP/wireshark" --build "$RUNNER_TEMP/ws-build" --jobs 2 --gui-tests
+      - run: python3 tools/make_fixtures.py
+      - run: '"$RUNNER_TEMP/ws-build/run/packetviewer_core_tests"'
+      - run: python3 tests/integration/validate.py --bin "$RUNNER_TEMP/ws-build/run" --fixtures build-fixtures --output build-validation
+      - name: Native GUI integration
+        run: |
+          mkdir -p "$RUNNER_TEMP/ws-config"
+          xvfb-run -a env QT_QPA_PLATFORM=xcb LIBGL_ALWAYS_SOFTWARE=1 WIRESHARK_CONFIG_DIR="$RUNNER_TEMP/ws-config" PACKETVIEWER_TEST_DIR="$PWD/build-fixtures" timeout 90 "$RUNNER_TEMP/ws-build/run/wireshark"
+          python3 tools/check_gui_results.py build-fixtures/gui-results.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: synthetic-fixture-validation
+          path: |
+            build-validation/results.json
+            build-validation/ground-truth.md
+            build-fixtures/gui-results.json
+            build-fixtures/viewer.png

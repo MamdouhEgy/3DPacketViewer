@@ -1,0 +1,17 @@
+bringing up nodes...
+bringing up nodes...
+
+s...s...s..s.ss......ss............s................s.s...........       [100%]
+=========================== short test summary info ============================
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_fileformats.py:306: strato has not been enabled via --enable-stratoshark
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:54: Capture tests are disabled via --disable-capture
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:71: Capture tests are disabled via --disable-capture
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:138: Capture tests are disabled via --disable-capture
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:146: Capture tests are disabled via --disable-capture
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:155: Capture tests are disabled via --disable-capture
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:62: Capture tests are disabled via --disable-capture
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_fileformats.py:297: strato has not been enabled via --enable-stratoshark
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:226: Test requires Lua scripting support.
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:398: strato has not been enabled via --enable-stratoshark
+SKIPPED [1] ../../../tmp/3dpv-wireshark/test/suite_clopts.py:406: strato has not been enabled via --enable-stratoshark
+55 passed, 11 skipped in 5.70s

@@ -1,0 +1,1182 @@
+[
+  {
+    "test": "ethernet_ipv4_tcp: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp"
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_tcp/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "53 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "ethernet_ipv4_udp: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,udp"
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ethernet_ipv4_udp/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "38 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "arp: dissectors",
+    "pass_": true,
+    "detail": "eth,arp"
+  },
+  {
+    "test": "arp/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "arp/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "24 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "icmp: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,icmp"
+  },
+  {
+    "test": "icmp/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "icmp/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "40 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "vlan: dissectors",
+    "pass_": true,
+    "detail": "eth,vlan,ip,udp"
+  },
+  {
+    "test": "vlan/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "vlan/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "42 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "ipv6: dissectors",
+    "pass_": true,
+    "detail": "eth,ipv6,udp"
+  },
+  {
+    "test": "ipv6/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv6/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "31 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "tcp_options: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp"
+  },
+  {
+    "test": "tcp_options/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_options/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "64 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "ipv4_options: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,udp"
+  },
+  {
+    "test": "ipv4_options/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ipv4_options/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "53 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "bit_fields: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp"
+  },
+  {
+    "test": "bit_fields/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "bit_fields/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "53 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "truncated: dissectors",
+    "pass_": true,
+    "detail": "eth,ip"
+  },
+  {
+    "test": "truncated/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "truncated/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "31 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "malformed: dissectors",
+    "pass_": true,
+    "detail": "eth,ip"
+  },
+  {
+    "test": "malformed/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "malformed/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "17 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "modbus: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp,mbtcp,modbus"
+  },
+  {
+    "test": "modbus/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "modbus/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "62 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "iec104: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp,iec60870_104,iec60870_asdu"
+  },
+  {
+    "test": "iec104/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "iec104/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "74 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "tcp_reassembly: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp,mbtcp,modbus"
+  },
+  {
+    "test": "tcp_reassembly/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "55 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "tcp_reassembly/2: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly/2: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "55 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "ip_reassembly: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,udp"
+  },
+  {
+    "test": "ip_reassembly/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "33 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "ip_reassembly/2: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly/2: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "32 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "goose: dissectors",
+    "pass_": true,
+    "detail": "eth,goose"
+  },
+  {
+    "test": "goose/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "35 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "sampled_values: dissectors",
+    "pass_": true,
+    "detail": "eth,sv"
+  },
+  {
+    "test": "sampled_values/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "sampled_values/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "29 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "mms: dissectors",
+    "pass_": true,
+    "detail": "mms"
+  },
+  {
+    "test": "mms/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "mms/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "18 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "dnp3: dissectors",
+    "pass_": true,
+    "detail": "eth,ip,tcp,dnp3"
+  },
+  {
+    "test": "dnp3/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "dnp3/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "65 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "goose_many_fields: dissectors",
+    "pass_": true,
+    "detail": "eth,goose"
+  },
+  {
+    "test": "goose_many_fields/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "goose_many_fields/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "1056 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "zero_length: dissectors",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: captured/report lengths",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: bytes unchanged",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: hierarchy",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: generated geometry",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: provenance",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: range bounds",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: canonical partition",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "zero_length/1: tshark byte-range oracle",
+    "pass_": true,
+    "detail": "8 fields compared; PDML provides no mask occupancy oracle"
+  },
+  {
+    "test": "ground truth: ethernet_ipv4_tcp/eth.type",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ethernet_ipv4_tcp/ip.version",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ethernet_ipv4_tcp/ip.hdr_len",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ethernet_ipv4_tcp/ip.src",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ethernet_ipv4_tcp/tcp.srcport",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ethernet_ipv4_udp/udp.dstport",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: arp/arp.opcode",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: icmp/icmp.type",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: vlan/vlan.id",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ipv6/ipv6.src",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: tcp_options/tcp.options.mss_val",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ipv4_options/ip.opt.type",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: bit_fields/ip.flags.df",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: bit_fields/tcp.flags.syn",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: bit_fields/tcp.flags.ack",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: truncated/eth.type",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: malformed/ip.version",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: modbus/mbtcp.trans_id",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: modbus/mbtcp.len",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: modbus/modbus.func_code",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: iec104/iec60870_104.apdulen",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: iec104/iec60870_104.type",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: iec104/iec60870_asdu.typeid",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: tcp_reassembly/mbtcp.trans_id",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: ip_reassembly/udp.srcport",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: goose/goose.appid",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: sampled_values/sv.appid",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: mms/mms.invokeID",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ground truth: dnp3/dnp3.dst",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "tcp_reassembly: explicit reassembly",
+    "pass_": true,
+    "detail": ""
+  },
+  {
+    "test": "ip_reassembly: explicit reassembly",
+    "pass_": true,
+    "detail": ""
+  }
+]

@@ -1,0 +1,69 @@
+
+=================================================================
+==86597==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 32 byte(s) in 1 object(s) allocated from:
+    #0 0x77f93e4fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x77f93cb19ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x77f90796abc0 in atk_bridge_adaptor_init (/lib/x86_64-linux-gnu/libatk-bridge-2.0.so.0+0x17bc0) (BuildId: d084b33aee91857655590d31ce1daecf276e02b3)
+    #3 0x77f9081f5fa5  (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x3f5fa5) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #4 0x77f907ffdae6  (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x1fdae6) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #5 0x77f9139b22f9 in g_closure_invoke (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x152f9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x77f9139e190b  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x4490b) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x77f9139d2590  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x35590) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #8 0x77f9139d27c0 in g_signal_emit_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x357c0) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #9 0x77f9139d2882 in g_signal_emit (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x35882) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #10 0x77f9139be2e3  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x212e3) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #11 0x77f9139c49c9 in g_object_notify (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x279c9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #12 0x77f907d3e01a  (/lib/x86_64-linux-gnu/libgdk-3.so.0+0x3901a) (BuildId: b923a8ebed88d2cb4baecd7915ee302c9544fa3f)
+    #13 0x77f9139d26bc  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x356bc) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #14 0x77f9139d2a97 in g_signal_emit_by_name (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x35a97) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #15 0x77f907d9457f  (/lib/x86_64-linux-gnu/libgdk-3.so.0+0x8f57f) (BuildId: b923a8ebed88d2cb4baecd7915ee302c9544fa3f)
+    #16 0x77f907d3e396 in gdk_display_manager_open_display (/lib/x86_64-linux-gnu/libgdk-3.so.0+0x39396) (BuildId: b923a8ebed88d2cb4baecd7915ee302c9544fa3f)
+    #17 0x77f908002409 in gtk_init_check (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x202409) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #18 0x77f90800243c in gtk_init (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x20243c) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #19 0x77f90860311f  (/usr/lib/x86_64-linux-gnu/qt6/plugins/platformthemes/libqgtk3.so+0xb11f) (BuildId: 6f32f37dc93eec6879f11be2388211bedc217304)
+    #20 0x77f93d3c8993 in QPlatformThemeFactory::create(QString const&, QString const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x1c8993) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #21 0x77f93d392ffa in QGuiApplicationPrivate::createPlatformIntegration() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x192ffa) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #22 0x77f93d39485f in QGuiApplicationPrivate::createEventDispatcher() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x19485f) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #23 0x77f93cd3c8b5 in QCoreApplicationPrivate::init() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x13c8b5) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #24 0x77f93d3948fe in QGuiApplicationPrivate::init() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x1948fe) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #25 0x77f93db82984 in QApplicationPrivate::init() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x182984) (BuildId: 812ea18a8b254d66471ad09ec189317aff0943e0)
+    #26 0x5646b35b78f7 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:426
+    #27 0x5646b403773f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #28 0x5646b367ac94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #29 0x77f913a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+Direct leak of 24 byte(s) in 1 object(s) allocated from:
+    #0 0x77f93e4fd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x77f93cb19ac9 in g_malloc (/lib/x86_64-linux-gnu/libglib-2.0.so.0+0x62ac9) (BuildId: 116e142b9b52c8a4dfd403e759e71ab8f95d8bb3)
+    #2 0x77f90796ab95 in atk_bridge_adaptor_init (/lib/x86_64-linux-gnu/libatk-bridge-2.0.so.0+0x17b95) (BuildId: d084b33aee91857655590d31ce1daecf276e02b3)
+    #3 0x77f9081f5fa5  (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x3f5fa5) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #4 0x77f907ffdae6  (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x1fdae6) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #5 0x77f9139b22f9 in g_closure_invoke (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x152f9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #6 0x77f9139e190b  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x4490b) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #7 0x77f9139d2590  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x35590) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #8 0x77f9139d27c0 in g_signal_emit_valist (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x357c0) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #9 0x77f9139d2882 in g_signal_emit (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x35882) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #10 0x77f9139be2e3  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x212e3) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #11 0x77f9139c49c9 in g_object_notify (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x279c9) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #12 0x77f907d3e01a  (/lib/x86_64-linux-gnu/libgdk-3.so.0+0x3901a) (BuildId: b923a8ebed88d2cb4baecd7915ee302c9544fa3f)
+    #13 0x77f9139d26bc  (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x356bc) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #14 0x77f9139d2a97 in g_signal_emit_by_name (/lib/x86_64-linux-gnu/libgobject-2.0.so.0+0x35a97) (BuildId: 91bcc5d52326f5490fa62acc824cb87c700d0f8a)
+    #15 0x77f907d9457f  (/lib/x86_64-linux-gnu/libgdk-3.so.0+0x8f57f) (BuildId: b923a8ebed88d2cb4baecd7915ee302c9544fa3f)
+    #16 0x77f907d3e396 in gdk_display_manager_open_display (/lib/x86_64-linux-gnu/libgdk-3.so.0+0x39396) (BuildId: b923a8ebed88d2cb4baecd7915ee302c9544fa3f)
+    #17 0x77f908002409 in gtk_init_check (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x202409) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #18 0x77f90800243c in gtk_init (/lib/x86_64-linux-gnu/libgtk-3.so.0+0x20243c) (BuildId: e3bf6367082e76a6e85218c0a84a5a0e29af05b1)
+    #19 0x77f90860311f  (/usr/lib/x86_64-linux-gnu/qt6/plugins/platformthemes/libqgtk3.so+0xb11f) (BuildId: 6f32f37dc93eec6879f11be2388211bedc217304)
+    #20 0x77f93d3c8993 in QPlatformThemeFactory::create(QString const&, QString const&) (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x1c8993) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #21 0x77f93d392ffa in QGuiApplicationPrivate::createPlatformIntegration() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x192ffa) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #22 0x77f93d39485f in QGuiApplicationPrivate::createEventDispatcher() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x19485f) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #23 0x77f93cd3c8b5 in QCoreApplicationPrivate::init() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Core.so.6+0x13c8b5) (BuildId: 9b85b15d08445ceca32a75ffedf3453d8c6fab47)
+    #24 0x77f93d3948fe in QGuiApplicationPrivate::init() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Gui.so.6+0x1948fe) (BuildId: 500dda7095f45c8cd1ba0bf43fd4bb9448174ad5)
+    #25 0x77f93db82984 in QApplicationPrivate::init() (/tmp/3dpv-deps/usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6+0x182984) (BuildId: 812ea18a8b254d66471ad09ec189317aff0943e0)
+    #26 0x5646b35b78f7 in MainApplication::MainApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/main_application.cpp:426
+    #27 0x5646b403773f in WiresharkApplication::WiresharkApplication(int&, char**) /tmp/3dpv-wireshark/ui/qt/wireshark_application.cpp:15
+    #28 0x5646b367ac94 in main /tmp/3dpv-wireshark/ui/qt/main.cpp:650
+    #29 0x77f913a2a1c9 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:58
+
+SUMMARY: AddressSanitizer: 56 byte(s) leaked in 2 allocation(s).

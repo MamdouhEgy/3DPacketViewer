@@ -1,0 +1,31 @@
+| Fixture | Frame | Protocol | Field | Expected byte | Expected length | Expected bit [start,length] | Extracted byte | Extracted length | Extracted bits | Source | Result |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ethernet_ipv4_tcp | 1 | eth | eth.type | 12 | 2 | [[96, 16]] | 12 | 2 | [[96, 16]] | 0 | PASS |
+| ethernet_ipv4_tcp | 1 | ip | ip.version | 14 | 1 | [[112, 4]] | 14 | 1 | [[112, 4]] | 0 | PASS |
+| ethernet_ipv4_tcp | 1 | ip | ip.hdr_len | 14 | 1 | [[116, 4]] | 14 | 1 | [[116, 4]] | 0 | PASS |
+| ethernet_ipv4_tcp | 1 | ip | ip.src | 26 | 4 | [[208, 32]] | 26 | 4 | [[208, 32]] | 0 | PASS |
+| ethernet_ipv4_tcp | 1 | tcp | tcp.srcport | 34 | 2 | [[272, 16]] | 34 | 2 | [[272, 16]] | 0 | PASS |
+| ethernet_ipv4_udp | 1 | udp | udp.dstport | 36 | 2 | [[288, 16]] | 36 | 2 | [[288, 16]] | 0 | PASS |
+| arp | 1 | arp | arp.opcode | 20 | 2 | [[160, 16]] | 20 | 2 | [[160, 16]] | 0 | PASS |
+| icmp | 1 | icmp | icmp.type | 34 | 1 | [[272, 8]] | 34 | 1 | [[272, 8]] | 0 | PASS |
+| vlan | 1 | vlan | vlan.id | 14 | 2 | [[116, 12]] | 14 | 2 | [[116, 12]] | 0 | PASS |
+| ipv6 | 1 | ipv6 | ipv6.src | 22 | 16 | [[176, 128]] | 22 | 16 | [[176, 128]] | 0 | PASS |
+| tcp_options | 1 | tcp | tcp.options.mss_val | 56 | 2 | [[448, 16]] | 56 | 2 | [[448, 16]] | 0 | PASS |
+| ipv4_options | 1 | ip | ip.opt.type | 34 | 1 | [[272, 8]] | 34 | 1 | [[272, 8]] | 0 | PASS |
+| bit_fields | 1 | ip | ip.flags.df | 20 | 1 | [[161, 1]] | 20 | 1 | [[161, 1]] | 0 | PASS |
+| bit_fields | 1 | tcp | tcp.flags.syn | 47 | 1 | [[382, 1]] | 47 | 1 | [[382, 1]] | 0 | PASS |
+| bit_fields | 1 | tcp | tcp.flags.ack | 47 | 1 | [[379, 1]] | 47 | 1 | [[379, 1]] | 0 | PASS |
+| truncated | 1 | eth | eth.type | 12 | 2 | [[96, 16]] | 12 | 2 | [[96, 16]] | 0 | PASS |
+| malformed | 1 | ip | ip.version | 14 | 1 | [[112, 4]] | 14 | 1 | [[112, 4]] | 0 | PASS |
+| modbus | 1 | mbtcp | mbtcp.trans_id | 54 | 2 | [[432, 16]] | 54 | 2 | [[432, 16]] | 0 | PASS |
+| modbus | 1 | mbtcp | mbtcp.len | 58 | 2 | [[464, 16]] | 58 | 2 | [[464, 16]] | 0 | PASS |
+| modbus | 1 | modbus | modbus.func_code | 61 | 1 | [[489, 7]] | 61 | 1 | [[489, 7]] | 0 | PASS |
+| iec104 | 1 | iec60870_104 | iec60870_104.apdulen | 55 | 1 | [[440, 8]] | 55 | 1 | [[440, 8]] | 0 | PASS |
+| iec104 | 1 | iec60870_104 | iec60870_104.type | 56 | 4 | [[455, 1]] | 56 | 4 | [[455, 1]] | 0 | PASS |
+| iec104 | 1 | iec60870_asdu | iec60870_asdu.typeid | 60 | 1 | [[480, 8]] | 60 | 1 | [[480, 8]] | 0 | PASS |
+| tcp_reassembly | 2 | mbtcp | mbtcp.trans_id | 0 | 2 | [[0, 16]] | 0 | 2 | [[0, 16]] | 1 | PASS |
+| ip_reassembly | 2 | udp | udp.srcport | 0 | 2 | [[0, 16]] | 0 | 2 | [[0, 16]] | 1 | PASS |
+| goose | 1 | goose | goose.appid | 14 | 2 | [[112, 16]] | 14 | 2 | [[112, 16]] | 0 | PASS |
+| sampled_values | 1 | sv | sv.appid | 14 | 2 | [[112, 16]] | 14 | 2 | [[112, 16]] | 0 | PASS |
+| mms | 1 | mms | mms.invokeID | 16 | 1 | [[128, 8]] | 16 | 1 | [[128, 8]] | 0 | PASS |
+| dnp3 | 1 | dnp3 | dnp3.dst | 58 | 2 | [[464, 16]] | 58 | 2 | [[464, 16]] | 0 | PASS |

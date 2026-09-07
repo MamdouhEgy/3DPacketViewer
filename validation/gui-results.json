@@ -1,0 +1,190 @@
+[
+  {
+    "pass": true,
+    "test": "plugin loading"
+  },
+  {
+    "pass": true,
+    "test": "open Modbus"
+  },
+  {
+    "pass": true,
+    "test": "selected packet model"
+  },
+  {
+    "pass": true,
+    "test": "OpenGL rendering"
+  },
+  {
+    "pass": true,
+    "test": "idle rendering bounded"
+  },
+  {
+    "pass": true,
+    "test": "rotation"
+  },
+  {
+    "pass": true,
+    "test": "zoom"
+  },
+  {
+    "pass": true,
+    "test": "pan"
+  },
+  {
+    "pass": true,
+    "test": "explode action"
+  },
+  {
+    "pass": true,
+    "test": "explode changes only presentation"
+  },
+  {
+    "pass": true,
+    "test": "projection action"
+  },
+  {
+    "pass": true,
+    "test": "label action"
+  },
+  {
+    "pass": true,
+    "test": "label raster rendering"
+  },
+  {
+    "pass": true,
+    "test": "generated action"
+  },
+  {
+    "pass": true,
+    "test": "inspector"
+  },
+  {
+    "pass": true,
+    "test": "byte and bit highlighting"
+  },
+  {
+    "pass": true,
+    "test": "native to viewer field synchronization"
+  },
+  {
+    "pass": true,
+    "test": "field picking"
+  },
+  {
+    "pass": true,
+    "test": "TCP reassembly capture"
+  },
+  {
+    "pass": true,
+    "test": "packet selection synchronization"
+  },
+  {
+    "pass": true,
+    "test": "reassembly provenance"
+  },
+  {
+    "pass": true,
+    "test": "display filter update"
+  },
+  {
+    "pass": true,
+    "test": "display filter restored"
+  },
+  {
+    "pass": true,
+    "test": "repeated packet switches"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture ethernet_ipv4_tcp"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture ethernet_ipv4_udp"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture arp"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture icmp"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture vlan"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture ipv6"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture tcp_options"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture ipv4_options"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture bit_fields"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture truncated"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture malformed"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture ip_reassembly"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture iec104"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture goose"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture mms"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture sampled_values"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture dnp3"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture goose_many_fields"
+  },
+  {
+    "pass": true,
+    "test": "GUI fixture zero_length"
+  },
+  {
+    "pass": true,
+    "test": "reopen capture"
+  },
+  {
+    "pass": true,
+    "test": "redissection"
+  },
+  {
+    "pass": true,
+    "test": "capture close invalidation"
+  },
+  {
+    "pass": true,
+    "test": "capture reopen"
+  }
+]
