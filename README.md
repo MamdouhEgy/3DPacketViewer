@@ -23,11 +23,6 @@ observations in the semantic analyzer. It then shows a real OpenCode Go/Luna
 response, navigation to evidence frame 12, and disabling AI. Provider waiting
 time is shortened. See [chapters and interpretation](docs/DEMO.md).
 
-The video demonstrates the workflow, **not R-GOOSE security certification**.
-Signatures/HMACs, key management and authenticated replay protection are outside
-the implemented scope. Access to the private repository is required to view its
-attachment.
-
 ## Compatibility
 
 | Item | Validated configuration |
